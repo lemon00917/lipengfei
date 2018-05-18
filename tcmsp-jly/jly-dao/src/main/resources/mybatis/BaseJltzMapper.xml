@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdutcm.jly.mapper.BaseJltzMapper">
+	<sql id="Jltz_Columns">id,tzlx,tztz,cjbx,fbqx,jl,jlzz,zf,zfzz,xgjb,tlpx,xwdw,tnzltw,tnzlbw,
+	tnzlsf,tnzlczpd,tnzlcznr,sw,syly</sql>
+	<resultMap id="JltzResultMap" type="com.cdutcm.jly.entity.BaseJltz">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="tzlx" property="tzlx" jdbcType="VARCHAR" />
+		<result column="tztz" property="tztz" jdbcType="VARCHAR" />
+		<result column="cjbx" property="cjbx" jdbcType="VARCHAR" />
+		<result column="fbqx" property="fbqx" jdbcType="VARCHAR" />
+		<result column="jl" property="jl" jdbcType="VARCHAR" />
+		<result column="jlzz" property="jlzz" jdbcType="VARCHAR" />
+		<result column="zf" property="zf" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<select id="selectBytz" resultMap="JltzResultMap" parameterType="com.cdutcm.jly.entity.BaseJltz" >
+	  select 
+	   <include refid="Jltz_Columns" />
+ 	  from base_jltz
+  	  where tzlx = #{tzlx,jdbcType=VARCHAR}
+	</select>
+</mapper>
