@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdutcm.tcms.ajy.mapper.FamilyMemberMapper">
+	<sql id="FamilyMember_Columns">id,user_id,user_briefid,head_img,relation_id,sex,birthday,nation,height,weight,
+		profession,id_card,address,is_illnesshistory,illnesshistory_desc,gmt_create,gmt_modified,username,relation_name,age
+	</sql>
+	<resultMap id="FamilyResultMap" type="com.cdutcm.tcms.ajy.model.FamilyMember">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="user_id" property="userId" jdbcType="BIGINT" />
+		<result column="user_briefid" property="userBriefid" jdbcType="VARCHAR" />
+		<result column="head_img" property="headImg" jdbcType="VARCHAR" />
+		<result column="relation_id" property="relationId" jdbcType="BIGINT" />
+		<result column="sex" property="sex" jdbcType="VARCHAR" />
+		<result column="birthday" property="birthday" jdbcType="TIMESTAMP" />
+		<result column="nation" property="nation" jdbcType="VARCHAR" />
+		<result column="height" property="height" jdbcType="DOUBLE" />
+		<result column="weight" property="weight" jdbcType="DOUBLE" />
+		<result column="profession" property="profession" jdbcType="VARCHAR" />
+		<result column="id_card" property="idCard" jdbcType="VARCHAR" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="is_illnesshistory" property="isIllnesshistory" jdbcType="TINYINT" />
+		<result column="illnesshistory_desc" property="illnesshistoryDesc" jdbcType="VARCHAR" />
+		<result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+		<result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="relation_name" property="relationName" jdbcType="VARCHAR" />
+		<result column="age" property="age" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<!-- 根据ID查询 -->
+	<select id="selectByPrimaryKey" resultMap="FamilyResultMap" parameterType="java.lang.Long" >
+	 select 
+  <include refid="FamilyMember_Columns" />
+   from alone_family_member
+   where id = #{id,jdbcType=BIGINT}
+	</select>
+	
+	
+	<!-- 根据家人ID查询 -->
+	<select id="selectByRId" resultMap="FamilyResultMap" parameterType="java.lang.Long" >
+	 select 
+  <include refid="FamilyMember_Columns" />
+   from alone_family_member
+   where relation_id = #{relationId,jdbcType=BIGINT}
+	</select>
+	
+	
+	<!--根据userid查询  -->
+	<select id="selectByUserId" resultMap="FamilyResultMap" parameterType="java.lang.Long" >
+	 select 
+  <include refid="FamilyMember_Columns" />
+   from alone_family_member
+   where user_id = #{userId,jdbcType=BIGINT}
+	</select>
+	
+	<!--分页  -->
+	 <select id="listPageAFamilyMember" resultMap="FamilyResultMap" parameterType="com.cdutcm.tcms.ajy.model.FamilyMember" >
+  	select * from alone_family_member
+  	</select>
+  	
+  	<!--添加  -->
+  	 <insert id="insert" parameterType="com.cdutcm.tcms.ajy.model.FamilyMember" >
+  	 insert into alone_family_member(id,user_id,user_briefid,head_img,relation_id,sex,birthday,nation,height,weight,
+		profession,id_card,address,is_illnesshistory,illnesshistory_desc,gmt_create,gmt_modified,username,relation_name,age)
+	values(#{id,jdbcType=BIGINT},#{userId,jdbcType=BIGINT},#{userBriefid,jdbcType=VARCHAR},#{headImg,jdbcType=VARCHAR},
+	#{relationId,jdbcType=INTEGER},#{sex,jdbcType=VARCHAR},#{birthday,jdbcType=TIMESTAMP},#{nation,jdbcType=VARCHAR},
+	#{height,jdbcType=DOUBLE},#{weight,jdbcType=DOUBLE},#{profession,jdbcType=VARCHAR},#{idCard,jdbcType=VARCHAR},
+	#{address,jdbcType=VARCHAR},#{isIllnesshistory,jdbcType=TINYINT},#{illnesshistoryDesc,jdbcType=VARCHAR},
+	#{gmtCreate,jdbcType=TIMESTAMP},#{gmtModified,jdbcType=TIMESTAMP},#{username,jdbcType=VARCHAR},
+	#{relationName,jdbcType=VARCHAR},#{age,jdbcType=VARCHAR})
+  	 </insert>
+  	 
+  	 <!--修改  -->
+  	 <update id="updateByPrimaryKey" parameterType="com.cdutcm.tcms.ajy.model.FamilyMember" >
+  	 update alone_family_member
+  	 	set id=#{id,jdbcType=BIGINT},
+  	 		user_id=#{userId,jdbcType=BIGINT},
+  	 		user_briefid=#{userBriefid,jdbcType=VARCHAR},
+  	 		head_img=#{headImg,jdbcType=VARCHAR},
+  	 		relation_id=#{relationId,jdbcType=INTEGER},
+  	 		sex=#{sex,jdbcType=VARCHAR},
+  	 		birthday=#{birthday,jdbcType=TIMESTAMP},
+  	 		nation=#{nation,jdbcType=VARCHAR},
+  	 		height=#{height,jdbcType=DOUBLE},
+  	 		weight=#{weight,jdbcType=DOUBLE},
+  	 	    profession=#{profession,jdbcType=VARCHAR},
+  	 	    id_card=#{idCard,jdbcType=VARCHAR},
+  	 	    address=#{address,jdbcType=VARCHAR},
+  	 	    is_illnesshistory=#{isIllnesshistory,jdbcType=TINYINT},
+  	 	    illnesshistory_desc=#{illnesshistoryDesc,jdbcType=VARCHAR},
+  	 	    gmt_create=#{gmtCreate,jdbcType=TIMESTAMP},
+  	 	    gmt_modified=#{gmtModified,jdbcType=TIMESTAMP},
+  	 	    username=#{username,jdbcType=VARCHAR},
+  	 	    relation_name=#{relationName,jdbcType=VARCHAR},
+  	 	    age=#{age,jdbcType=VARCHAR}
+  	  where id = #{id,jdbcType=BIGINT}
+  	 </update>
+  	 
+  	 <!-- 删除 -->
+  	 <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+  	 delete from alone_family_member
+  	 where id = #{id,jdbcType=BIGINT}
+  	 </delete>
+</mapper>

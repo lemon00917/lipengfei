@@ -1,0 +1,42 @@
+<meta charset="utf-8">
+ <div class="top-itemA">
+            <div class="top-itemA-item">经络报告</div>
+             <button class="btn btn-primary" onclick="printReport('${report.id}')">打印检测报告</button>
+         </div>
+         <div class="top-right-itemB">
+          <div class="top-right-itemB-right">
+          <div class="inputScore">${report.healScore}%</div>
+           <div class="container">
+		    <div class="wave"></div>
+		   </div>
+		   <div id="AnalyseText" >健康分析</div>
+          </div>
+          <div class="top-right-itemB-left">
+             <div class="top-right-itemB-left-top">
+               <div id="time">
+              ${report.gmtCreate,dateFormat='yyyy-MM-dd'}
+               </div>
+               <div id="interval">
+                体质：${report.tzbs}
+               </div>
+               <div>
+                体质特征：${report.tztz}
+               </div>
+               <div id="interval">
+                经络问题：${report.jl}
+               </div>
+                <div>
+              病位：${report.jlzz}
+               </div>
+             </div>
+              <div class="top-right-itemB-left-bottom">
+                <div class="top-right-itemB-left-bottom-item">
+                   <img src="img/body_01.png" height="140">
+                </div>
+                <div class="top-right-itemB-left-bottom-item">
+                 <img src="img/body_02.png" height="140">
+                </div>
+              </div>
+          </div>
+         </div>
+       

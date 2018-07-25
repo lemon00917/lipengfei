@@ -1,0 +1,28 @@
+.icon-home{
+  color:black;
+}
+.app-header{
+  border-bottom:1px solid rgb(62,147,195);
+}
+.app-nav-title{
+  color:rgb(99,184,249);
+  margin-top:10px;
+}
+    .cur{ background:rgb(16,20,21); font-weight:bold;}
+    .app-content{
+        background: #fff;
+    }
+    
+   /*  折叠按钮hover */
+  .app-sidebar__toggle:focus, .app-sidebar__toggle:hover {
+  color: #fff;
+  background-color: rgb(99,184,249);
+  text-decoration: none;
+}
+/* 侧边栏的颜色 */
+.app-sidebar{
+background-color: rgb(99,184,249);
+}
+#treeview-item-select li{
+list-style:none;
+}

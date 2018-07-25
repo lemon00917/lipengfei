@@ -1,0 +1,216 @@
+<meta charset="UTF-8">
+<head>
+ <title>家人关联信息</title>
+</head>
+<body>
+ <div class="outline">
+   <div class="title">
+    <h1 class="title-item">家人关联健康信息</h1>
+     <div class="title-item" id="addFamily">
+       <img src="img/add.png" height="32" >
+     </div>
+   </div>
+   <div class="content">
+   @ for(data in datas){
+     <div class="content-item">
+       <div class="blank">
+         <div class="top">
+          <div class="itemA" style="display:flex;justify-content: space-between;">
+             <div class="itemA-item">ID:${data.userBriefid}</div>
+             <div class="itemA-item" onclick="deleteFamily('${data.id}')"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></div>
+          </div>
+           <div class="itemB" id="center">
+              <img src="${data.headImg}" height="140" width="140" style="border-radius:70px">
+           </div>
+             @if(data.relationName=="-请选择-"){
+             <div class="itemA" id="center">未填写</div>
+              @}else{
+            <div class="itemA" id="center">${data.relationName}</div>
+            	 @}
+            	
+         						
+             <div class="itemC">
+               <div class="itemC-blank">
+               <input hidden id="relationId" value='${data.relationId}'>
+              
+                 <div class="top-left-itemC-item" > 姓&emsp;名：${data.username}</div>
+                 
+          
+            @if(!isEmpty(data.sex)){
+                 <div class="top-left-itemC-item" > 性&emsp;别：${data.sex}</div>
+                 @}else{
+                  <div class="top-left-itemC-item" > 性&emsp;别：未填写</div>
+                 @}
+ 				
+ 				
+ 				 @if(!isEmpty(data.age)){
+                <div class="top-left-itemC-item" > 年&emsp;龄：${data.age}岁</div>
+                 @}else{
+                  <div class="top-left-itemC-item" > 年&emsp;龄：未填写</div>
+                 @}
+                 
+                  @if(!isEmpty(data.weight)){
+                <div class="top-left-itemC-item" > 体&emsp;重：${data.weight}KG</div>
+                @}else{
+                <div class="top-left-itemC-item" > 体&emsp;重：未填写</div>
+                 @}
+                 
+                  @if(!isEmpty(data.height)){
+                <div class="top-left-itemC-item" > 身&emsp;高：${data.height}CM</div>
+                @}else{
+                 <div class="top-left-itemC-item" > 身&emsp;高：未填写</div>
+                 @}
+                 <div class="top-left-itemC-item" > 病&emsp;史：无</div>
+               </div>
+             </div>
+         </div>
+         <div class="bottom">
+         <div class="bottom-item" id="center">
+            <button type="button" class="btn btn-default btn-primary"onclick="watchReport('${data.id}')">查看报告</button>
+          </div>
+          <div class="bottom-item" id="center">
+            <button type="button" class="btn btn-default btn-primary"onclick="watchFamily('${data.id}')">查看信息</button>
+          </div>
+          <div class="bottom-item" id="center"><button type="button" class="btn btn-default btn-warning"onclick="editFamily('${data.id}')" >修改资料</button></div>
+         </div>
+       </div>
+     </div>
+     @}
+   </div>
+ </div>
+</body>
+<script>
+function editFamily(id){
+   $("#app-content").load("/jly/aFamilyMember/editFamily?id="+id);
+}
+
+
+function watchReport(id){  
+	
+		var url="${request.contextPath}/healthinfo";
+		 postdata = {id : id};
+		 $.post(url, postdata, function(data){
+		 console.log(data)
+		 	if(data.status == "TS"){     
+				    
+      			 $("#app-content").load("${request.contextPath}/familyHealth?id="+id);          
+                 }
+          if(data.status == "FS"){
+                    alert("没有检测报告！")
+               }
+		 });
+}
+
+function watchFamily(id){
+  $("#app-content").load("/jly/aFamilyMember/watchFamilyMember?id="+id);
+}
+$("#addFamily").click(function(){
+$('#app-content').load("${request.contextPath}/aFamilyMember/insertfamily")
+})
+function deleteFamily(t){
+        confirm("确定删除关联家人？")
+
+        var relationId=$("#relationId").val();
+          $.ajax({
+               type: "POST",
+               url: "${request.contextPath}/aFamilyMember/delFamily",
+               data: {familyId:t},
+               async:false,
+               success: function(data) {
+                 if(data.status == "TS"){
+                 alert("删除成功！")     
+      			  $('#app-content').load(contextPath+"/aFamilyMember/familyTable?rid="+relationId);          
+                 }else{
+                    alert("删除失败！")
+                 }
+               },
+               error: function() {
+               alert("提交失败！")
+              }
+		 });
+  
+}
+
+</script>
+<style>
+.glyphicon-remove-circle:hover{
+  color:red;
+}
+#addFamily{
+ float:right;
+ margin-right:30px;
+}
+#center{
+  text-align:center;
+}
+.itemA{
+    height:10%;
+    padding:2%;
+    cursor:pointer;
+}
+.itemB{
+     height:30%;
+    padding:2%;
+}
+.itemC{
+    height:60%;
+    padding-top:5%;
+}
+.bottom-item{
+   padding-top:5%;
+   height:30%;
+}
+.itemC-blank{
+    width:60%;
+    height:100%;
+    margin:0 auto;
+}
+.top{
+height:75%;
+}
+.bottom{
+height:25%;
+}
+.blank{
+border-radius:5px;
+ height:100%;
+ width:100%;
+ background:#fff;
+ 
+}
+.app-content{
+   background:#CDEDFC;
+ }
+.content-item{
+font-size:18px;
+  height:85%;
+  width:33.33%;
+  padding:2% 3% 0 3%;
+}
+.outline{
+   min-height:819px;
+   width:100%;
+  }
+  .title{
+  height:80px;
+  width:95%;
+  margin:0 auto;
+  text-align:center;
+  padding-top:25px;
+  color:rgb(99,184,220);
+  background:#fff;
+}
+.title-item{
+  display:inline;
+  cursor:pointer;
+}
+.content{
+  height:759px;
+  width:100%;
+  display:flex;
+  flex-wrap:wrap;
+  overflow:hidden;
+  overflow-y:scroll;
+  padding-left:1%;
+}
+</style>

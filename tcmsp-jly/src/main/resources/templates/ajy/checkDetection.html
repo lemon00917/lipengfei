@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="${request.contextPath}/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="${request.contextPath}/css/main.css">
+    <link rel="stylesheet" type="text/css" href="${request.contextPath}/css/menu.css">
+    <link rel="stylesheet" type="text/css" href="${request.contextPath}/css/iconfont.css">
+    <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="app sidebar-mini rtl">
+
+ <!-- 顶部栏 -->
+	@{ include("header.html")
+        			     @{ 
+        			     @} 
+        		    @}
+
+<!-- 侧边栏-->
+@{ include("sidebar.html")
+        			     @{ 
+        			     @} 
+        		    @}
+
+<!-- 中间部分主要内容 -->
+<main class="app-content" id="app-content">
+<div id="app2">
+    <div class="app2-content">
+     打印生成中…
+    </div>
+</div>
+<div id="app1"></div>
+</main>
+<!-- Essential javascripts for application to work-->
+<script src="${request.contextPath}/js/jquery-3.2.1.min.js"></script>
+<script src="${request.contextPath}/js/popper.min.js"></script>
+<script src="${request.contextPath}/bootstrap/js/bootstrap.js"></script>
+<script src="${request.contextPath}/js/main.js"></script>
+<!-- 顶部消息加载提示-->
+<script src="${request.contextPath}/js/plugins/pace.min.js"></script>
+<script type="text/javascript">
+</script>
+<script>
+  var contextPath = '${request.contextPath}';
+  $(function(){
+  var id=$("#userid").val();
+    $("#app1").load(contextPath + "/jltz/tojcbg?id="+id);
+  })
+</script>
+</body>
+<style>
+#app2{
+   position:absolute;
+   top:35%;
+   left:45%;
+  height:150px;
+  width:300px;
+  background:#eee;
+}
+.app2-content{
+  height:100%;
+  width:100%;
+  font-size:30px;
+  font-weight:900;
+  padding-top:50px;
+ text-align:center;
+}
+</style>
+</html>

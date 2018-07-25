@@ -1,0 +1,9 @@
+
+                @ for(menu in menus){
+                	<li><a href="#"><i class="${menu.icon}""></i> ${menu.menu_name} </a>
+                    @ if(menu.submenu!=null){
+                    @layout("/ajy/subMenu.html",{"childMenus":menu.submenu}){} 
+                    @}
+                  </li>
+                   @}
+             

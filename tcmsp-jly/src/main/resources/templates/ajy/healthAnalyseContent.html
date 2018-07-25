@@ -1,0 +1,384 @@
+<head>
+  <meta charset="UTF-8">
+  <title>健康分析详情</title>
+  
+  <link rel="stylesheet" href="cangas-datapicker/jquery-ui-1.10.1.css">
+  <link rel="stylesheet" href="cangas-datapicker/cangas.datepicker.css">
+  <link rel="stylesheet" href="css/wave.css">
+  
+</head>
+<body>
+  <div class="outline">
+    <div class="top">
+       <div class="top-left">
+          <div class="top-left-itemA">
+                             个人信息
+          </div>
+          <div class="top-left-itemB" id="center">
+            <img src="${family.headImg}" height="140" width="140" style="border-radius:70px">
+          </div>
+          <div class="top-itemD" id="center" style="color:#93D3F0">ID:${family.userBriefid}</div>
+          <div class="top-left-itemC">
+             <div class="top-left-itemC-blank">
+             <input hidden id="userid" value='${family.id}'>
+              <div class="top-left-itemC-item" > 姓&emsp;名：${family.username}</div>
+              <div class="top-left-itemC-item" > 性&emsp;别：${family.sex}</div>
+              <div class="top-left-itemC-item" > 年&emsp;龄：${family.age}岁</div>
+              <div class="top-left-itemC-item" > 体&emsp;重：${family.weight}KG</div>
+              <div class="top-left-itemC-item" > 身&emsp;高：${family.height}cm</div>
+               <div class="top-left-itemC-item" > 病&emsp;史：${family.illnesshistoryDesc}</div>
+            
+             
+             
+             </div>
+          </div>
+       </div>
+       
+       
+       <div class="top-right" id="top-right">
+           <div class="top-itemA">
+            <div class="top-itemA-item">经络报告</div>
+             <button class="btn btn-primary" onclick="printReport('${reports[0].id}')">打印检测报告</button>
+         </div>
+         <div class="top-right-itemB">
+          <div class="top-right-itemB-right">
+          <div class="inputScore">${reports[0].healScore}%</div>
+           <div class="container">
+		    <div class="wave"></div>
+		   </div>
+		   <div id="AnalyseText" >健康分析</div>
+          </div>
+          <div class="top-right-itemB-left">
+             <div class="top-right-itemB-left-top">
+               <div id="time">
+              ${reports[0].gmtCreate,dateFormat='yyyy-MM-dd'}
+               </div>
+               <div id="interval">
+                体质：${reports[0].tzbs}
+               </div>
+               <div>
+                体质特征：${reports[0].tztz}
+               </div>
+               <div id="interval">
+                经络问题：${reports[0].jl}
+               </div>
+                <div>
+              病位：${reports[0].jlzz}
+               </div>
+             </div>
+              <div class="top-right-itemB-left-bottom">
+                <div class="top-right-itemB-left-bottom-item">
+                   <img src="img/body_01.png" height="140">
+                </div>
+                <div class="top-right-itemB-left-bottom-item">
+                 <img src="img/body_02.png" height="140">
+                </div>
+              </div>
+          </div>
+         </div>   
+       </div>
+    </div>
+    
+    
+    <div class="bottom">
+    
+   	 <!-- 日历 -->
+      <div class="bottom-left">
+      <!--  <div class="datepicker ll-skin-cangas" onclick="getAnalyse()"></div>
+       <input hidden id="getDate"> -->
+       
+          <table class="table table-condensed table-hover" style="cursor:pointer">
+          <thead>检测记录</thead>
+          <tr>
+          <td>序号</td>
+          <td>体质</td>
+          <td>检测时间</td>
+          </tr>
+          <tbody>
+          @ var a=1;
+           @for(report in reports){
+          <tr onclick="getdate('${report.gmtCreate,dateFormat='yyyy-MM-dd HH:mm:ss'}')"> 
+          <input hidden id="getDate" value='${report.gmtCreate,dateFormat='yyyy-MM-dd HH:mm:ss'}'>       
+          <td>${a}</td>
+          <td>${report.tzbs}</td>
+          <td >
+        	 ${report.gmtCreate,dateFormat='yyyy-MM-dd HH:mm'}      
+         </td>
+          </tr>
+        	 @{a=a+1;}
+          @}
+          </tbody>
+			</table>
+          
+      </div>
+      
+       <div class="bottom-right">
+         <div class="bottom-right-left">
+            <div class="bottom-left-itemA">
+                              经络分析
+            </div>
+             <div class="bottom-right-left-content" id="chart">    
+            </div>
+         </div>
+         <div class="bottom-right-right">
+            <div class="bottom-right-right-top">
+              <div class="bottom-right-right-top-blank">
+ <iframe width="500" scrolling="no" height="240" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=12&color=%2300B0F0&icon=1&num=5&site=12"></iframe>
+              </div>
+            </div>
+             <div class="bottom-right-right-bottom">
+               <div class="bottom-right-right-bottom-item">
+                 心率：${reports[0].xl}次/分
+               </div>
+               <div class="bottom-right-right-bottom-item">
+               睡眠时间：${reports[0].sleepTime}小时
+               </div>
+               <div class="bottom-right-right-bottom-item">
+               体温：${reports[0].tw}℃
+               </div>
+               <div class="bottom-right-right-bottom-item">
+               体脂百分比：${reports[0].tzbfb}%
+               </div>
+             </div>
+         </div>
+       </div>
+    </div>
+    <div class="lva">
+     <ul id="va">
+         @ for(data in reports){
+         <li> 
+           <input type="text" name="heathScore" value=${data.healScore}>
+           <input type="text" name="gmtCreate" value=${data.gmtCreate,dateFormat='yyyy-MM-dd'}>
+         </li>
+         @}
+        
+     </ul>
+    </div>
+  </div>
+   <script src="cangas-datapicker/jquery-1.9.1.js"></script>
+   <script src="cangas-datapicker/jquery-ui-1.10.1.min.js"></script>
+<script src="js/g2.js"></script>
+<script type="text/javascript">
+	function printReport(id){
+		alert(id)
+		 $('#app-content').load("${request.contextPath}/jltz/familyjltz?id="+id)
+	}
+$(".datepicker").datepicker({
+     altField: '#getDate',
+     altFormat: 'yy-mm-dd',
+     onSelect: getdate 
+	}) 
+function getdate(gmtdate){	 
+	 var gmtCreate=gmtdate; 
+	 var familyMemberId=$("#userid").val();
+
+	 var url="${request.contextPath}/getjlbg";
+	postdata={familyMemberId:familyMemberId,
+				gmtCreate:gmtCreate
+			}
+	 console.log(postdata)
+	$.post(url, postdata, function(data){ 
+	 			 $("#top-right").html(data);
+	 			 });
+	
+}
+    $(function(){
+         $( ".datepicker" ).datepicker({
+			inline: true,
+			showOtherMonths: true
+		});
+		const chart = new G2.Chart({
+		  container: 'chart',
+		  forceFit: true,
+		  height: 300,
+		  width:500,
+		});
+		const defs = {
+		  'time': {
+		    type: 'time',
+		    nice: true,
+		    mask: 'MM-DD',
+		    // 对于 linear 类型的数据，可以设置 tickInterval 参数来设定每个刻度之间的间距，time 类型的单位为微秒
+		    tickInterval: 7 * 24 * 60 * 60 * 1000 
+		  },
+		  //纵坐标间隔
+		  value: {
+		    tickInterval: 10
+		  }
+		};
+		chart.source(getScoreAndTime(),defs);
+		chart.line().position('time*value').color('red');
+		chart.render();
+});
+function getScoreAndTime(){
+  var dataQ=[];
+  $("#va li").each(function(){
+    var  k= $(this).find("input[name=heathScore]").val();
+    var  t = $(this).find("input[name=gmtCreate]").val();
+    var data ={value: k, time: t };
+    dataQ.push(data);
+  })
+  return dataQ;
+}
+</script>
+</body>
+<style>
+.lva{
+  display:none;
+}
+/* 隐藏右侧滚动条 */
+.inputScore{
+ position:absolute;
+ font-size:35px;
+ color:#fff;
+ margin:110px 0 0 7.5%;
+z-index:40;
+}
+body{
+overflow:-Scroll;
+overflow-y:hidden
+}
+#AnalyseText{
+ margin-top:15px;
+ text-align:center;
+ font-size:35px;
+ font-weight:700;
+}
+.bottom-right-right-top{
+ height:70%;
+ padding:20% 10% 0 10% ;
+ border:1px solid #eee;
+}
+.bottom-right-right-top-blank{
+  height:100%;
+  width:100%;
+}
+.bottom-right-right-bottom{
+ height:30%;
+ border:1px solid #eee;
+ display:flex;
+ flex-wrap: wrap;
+}
+.bottom-right-right-bottom-item{
+ height:50%;
+ width:50%;
+ color:#A4D7DB;
+ padding-left:60px;
+}
+.bottom{
+    margin-top:31px;
+    height:309px;
+    width:100%;
+    display:flex;
+  }
+  .bottom-right{
+   font-size:18px;
+   height:100%;
+    width:74%;
+    margin-left:2%;
+   display:flex;
+  }
+  .bottom-left{
+    font-size:15px;
+    width:24%;
+    background:#fff;
+  }
+  .bottom-right-left{
+    width:50%;
+    height:100%;
+    background:#fff;
+  }
+  .bottom-right-right{
+    margin-left:2%;
+    width:48%;
+    height:100%;
+    background:#fff;
+  }
+#interval{
+ margin-top:20px;
+}
+#center{
+  text-align:center;
+}
+  .outline{
+   min-height:839px;
+   width:100%;
+  }
+  .top{
+    font-size:18px;
+    height:500px;
+    width:100%;
+    display:flex;
+  }
+   .top-right{
+    height:100%;
+    width:74%;
+    margin-left:2%;
+     background-image:url(img/jlReport_bg.png);
+    background-position:center;
+    background-size: cover;
+   }
+  .top-left{
+    height:100%;
+    width:24%;
+    background:#fff;
+  }
+  .top-right-itemB{
+    height:90%;
+    display:flex;
+  }
+  .top-right-itemB-right{
+    padding-top:2%;
+    width:30%;
+    height:100%;
+  }
+   .top-right-itemB-left{
+    width:70%;
+    height:100%;
+  }
+  .top-right-itemB-left-top{
+  /*  background:green; */
+    height:65%;
+  }
+   .top-right-itemB-left-bottom{
+  /*  background:red; */
+    height:35%;
+    display:flex;
+  }
+  .top-right-itemB-left-bottom-item{
+    width:15%;
+    text-align:center;
+  }
+  .top-itemA{
+    height:10%;
+    padding:1%;
+    display:flex;
+    justify-content: space-between;
+  }
+   .top-left-itemA{
+    height:10%;
+    padding:2%;
+  }
+    .bottom-left-itemA{
+    height:15%;
+    padding:2%;
+  }
+  .top-itemD{
+    height:5%;
+  }
+  .top-left-itemB{
+    height:30%;
+  }
+  .bottom-right-left-content{
+    height:85%;
+  }
+   .top-left-itemC{
+    height:55%;
+    padding-top:5%;
+  }
+  .top-left-itemC-blank{
+    width:60%;
+    height:100%;
+    margin:0 auto;
+  }
+</style>

@@ -1,0 +1,223 @@
+
+<title>中医体质分析</title>
+	<meta charset="UTF-8">
+	<link rel="shortcut icon" type="image/x-icon" href="images/logo.ico" media="screen" />
+	<meta name="generator" content="editplus" />
+	<meta name="author" content="" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+<style>
+	body{
+		font-family : 宋体;
+        font-size : 1em;
+        /* color : #f00;  */
+		list-style:none;
+	}
+
+	/*头部居中*/
+	.hh {  }
+
+
+	/**/
+	.jcsj{
+		font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+		/* margin:5px 5px 5px 20px; */
+		border-collapse:collapse;
+	}
+	.zjm{
+	}
+	/*去除table空白间隙*/
+	table { border-collapse: collapse; padding: 0;}
+
+	/*传感平衡数据中 th样式*/
+	.thead {
+		border-bottom: 2px solid black;
+		border-top: 2px solid black; 	
+	}
+	/*检测提示中 th样式*/
+	.head{
+		border-bottom: 2px solid black;
+		border-top: 2px solid black; 
+		background-color: #D3D3D3;
+	}
+	input{
+		text-align: center;
+		width: 110px; 
+		border: 0px;
+	}
+	.dashhead {
+		border: 2px dotted black;
+	}
+	.dashheadleft {
+		border: 2px dotted black;
+		border-left:0px;
+	}
+	.dashheadright{
+		border: 2px dotted black;
+		border-right:0px;
+	}
+</style>
+
+<script src="${request.contextPath}/js/echarts.common.min.js"></script>
+<script src="${request.contextPath}/js/echarts.min.js"></script>
+<script src="${request.contextPath}/js/report.js"></script>
+<script src="${request.contextPath}/js/LodopFuncs.js"></script>
+<script src="${request.contextPath}/js/dayin.js"></script>
+
+<!-- 打印按钮 -->
+<!-- <button onclick="dayin()">打印</button> -->
+<input hidden type="text" id="userid" value="${fmuser.id}">
+<div  id="d1">
+	<div style="position:absolute;left:5px;top:10px;z-index:999;">
+			
+		</div>
+		<div style="font-size:25px;text-align:center;margin:20px 40px 0px 40px">
+			<b>成都中医药大学数字医药研究所<br/>经络传感检测报告</b>
+		</div>
+		<div  style="text-align:right">
+		<h5 class='hh'>检测时间：<a>${record.gmtCreate,dateFormat='yyyy-MM-dd hh：mm'}</a></h5>
+	</div>
+		<hr style="border-top:1px solid #555555;"/>
+		<table class="jcsj" style="width: 100%;font-family:'Trebuchet MS',Arial,Helvetica, sans-serif;" >
+			<tr align="left">
+			
+				<td><b>ID&nbsp;&nbsp;号：</b><a>${fmuser.userBriefid}</a></td>
+				<td><b>姓&nbsp;名：</b><a >${fmuser.username}</a></td>
+				<td><b>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：</b><a >${fmuser.sex} </a></td>
+				<td><b>年&nbsp;龄：</b><a > ${fmuser.age}</a></td>
+			</tr>
+			<tr align="left">
+				<td><b>节&nbsp;&nbsp;气：</b><a >立春</a></td>
+				<td><b>时&nbsp;辰：</b><a >乙巳</a></td>
+				<td><b>当令经络：</b><a >脾经</a></td>
+				<td><b>科&nbsp;别：</b><a s>康复科</a></td>
+			</tr>
+		</table>
+	 </div>
+	 
+		
+		<div id="report_24jl" style="width: 600px;height:400px;" ></div>
+		
+	
+			<div id="d5" hidden="true">
+						<img id="jlcg" ></img>
+			</div>					
+	
+	
+	 <div id="d2" >
+	  
+	<div style="padding:2px 280px 2px 30px;font-weight:bold;">
+				<a>传感平衡数据</a>
+			</div>
+			<table style="width: 100%;border-collapse:collapse;" >
+				<tr>
+					<th class="head" style="height: 40px;">项目</th>
+					<th class="head" style="height: 40px;">测定结果</th>
+					<th class="head" style="height: 40px;">标识</th>
+					<th class="head" style="height: 40px;">参考范围</th>
+				</tr>
+				<tr >
+					<th style="font-weight:normal;">自律神经</th>
+					<th style="font-weight:normal;">${jlzb.Zlsj}</th>
+					<th style="font-weight:normal;">↑</th>
+					<th style="font-weight:normal;">≤2.0</th>
+				</tr>
+				<tr>
+					<th style="font-weight:normal;">阴/阳</th>
+					<th style="font-weight:normal;">${jlzb.yinYang}</th>
+					<th style="font-weight:normal;"></th>
+					<th style="font-weight:normal;">0.8 ～ 1.2</th>
+				</tr>
+				<tr>
+					<th style="font-weight:normal;">上/下</th>
+					<th style="font-weight:normal;">${jlzb.shangXia}</th>
+					<th style="font-weight:normal;">↓</th>
+					<th style="font-weight:normal;">0.8 ～ 1.2</th>
+				</tr>
+				<tr>
+					<th style="font-weight:normal;">左/右 </th>
+					<th style="font-weight:normal;">${jlzb.zuoYou}</th>
+					<th style="font-weight:normal;">↓</th>
+					<th style="font-weight:normal;">0.8 ～ 1.2</th>
+				</tr>
+				<tr>
+					<th style="font-weight:normal;">传导系数 </th>
+					<th style="font-weight:normal;">${jlzb.m} </th>
+					<th style="font-weight:normal;">↓ </th>
+					<th style="font-weight:normal;">25 ～ 55</th>
+				</tr>
+			</table>
+		
+	
+	</div>
+	
+	<div  id="d3">
+	<div>
+		<a style="font-weight: bold; font-size: 15px;">经络传感与体质关联分析</a><br>
+		<div style=" text-indent:2em;"><a>根据您的经络传感状态，提示：您目前的体质为 <a class="tz" >平和质 </a>体质。</a></div>
+	</div>
+	@ for(data in datas){
+	<div>
+		<p><a class="tz" >${data.tzlx}</a> 体质特征</p>
+		<a >气虚体质是以人体功能不足形成的以疲乏气短、自汗、易感冒为主要特征的一部分人群。</a>
+		<ul style="list-style-type:none">
+			<li>【总体特征】${data.tztz}</li>
+			<li>【常见表现】${data.cjbx}</li>
+			<li>【发病倾向】${data.fbqx}</li>
+			<li>【经络】${data.jl}</li>
+			<li>【经络病症状】${data.jlzz}</li>
+			<li>【对应脏腑】${data.jlzz}</li> 
+			<li>【相关疾病】${data.xgjb}</li>
+			<li>【体质调理配穴】${data.tlpx}</li>
+			<li>【穴位定位】${data.xwdw}</li>
+			<li>【推拿治疗体位】${data.tnzltw}</li>
+			<li>【推拿治疗部位】${data.tnzlbw}</li>
+			<li>【推拿治疗手法】${data.tnzlsf}</li>
+			<li>【推拿治疗操作频度】${data.tnzlczpd}</li>
+			<li>【推拿治疗操作内容】${data.tnzlcznr}</li>
+			<li>【食物】${data.sw}</li>
+			<li>【食药两用】${data.syly}</li>
+		</ul>
+	</div>	
+	 @}
+	 </div>
+<div id ="d4" >
+	<hr style="border-top:1px solid #555555;width:100%"/>
+		 <table style="width: 100%;" >
+			 <tr> 
+				 <td> <b>科室：</b> <a>展厅</a></th>
+				 <td><b>操作医师：</b> <a>郑皓</a></th>
+			 </tr>
+		 </table>
+	 </div>
+<div class="container" id="message">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="jumbotron">
+				<h1>
+					Hello, world!
+				</h1>
+				<p>
+					This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
+				</p>
+				<p>
+					 <a class="btn btn-primary btn-large" href="#">Learn more</a>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+	<script>
+	 $("#app1").hide(); 
+	  $(function(){
+	  setTimeout(function(){
+	   
+	    $("#app2").show();
+	   dayin();
+	   
+	  },1000);
+	  })
+	</script>
+	<style>
+	</style>
+</html>

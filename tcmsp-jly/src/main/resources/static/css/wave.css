@@ -1,0 +1,45 @@
+@CHARSET "UTF-8";
+.container {
+    width: 200px;
+    height: 200px;
+    padding: 5px;
+   /*  border: 5px solid #59A1DC; 不显示外边框的 */
+    border-radius: 50%;
+    overflow: hidden;
+}
+.wave {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    background-color: #59A1DC;
+    border-radius: 50%;
+ }
+    .wave:before,
+    .wave:after{
+        content: "";
+        position: absolute;
+        width: 360px;
+        height: 360px;
+        top: 0;
+        left: 50%;
+        background-color: rgba(255, 255, 255, .4);
+        border-radius: 45%;
+        transform: translate(-50%, -70%) rotate(0);
+        animation: rotate 6s linear infinite;
+        z-index: 10;
+    }
+    
+    .wave:after {
+        border-radius: 47%;
+        background-color: rgba(255, 255, 255, .9);
+        transform: translate(-50%, -70%) rotate(0);
+        animation: rotate 10s linear -5s infinite;
+        z-index: 20;
+    }
+@keyframes rotate {
+    50% {
+        transform: translate(-50%, -73%) rotate(180deg);
+    } 100% {
+        transform: translate(-50%, -70%) rotate(360deg);
+    }
+}

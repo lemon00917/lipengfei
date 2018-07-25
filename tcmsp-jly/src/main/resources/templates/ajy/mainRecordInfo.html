@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>档案信息</title>
+</head>
+<body>
+<div class="info">
+   <div class="title">
+        <h2>档案信息</h2>
+   </div>
+   <div class="content">
+      <div class="content-itemA">
+        <div class="content-item-blank">
+            <div class="content-title">个人档案信息</div>
+             <div class="content-content">
+                 <div id="itemA" onclick="watchFamily()">查看</div>
+                 <div id="itemA" onclick="editFamily()">修改</div>
+             </div>
+        </div>
+      </div>
+      <div class="content-itemB">
+      <div class="content-item-blank">
+      <div class="content-title">家人档案信息</div>
+             <div class="content-content">
+                 <div id="itemA" onclick="familyTable()">查看</div>
+                 <div id="itemA" onclick="addFamlily()">添加</div>
+                 <input hidden type="text" value="${fuser.userId}" name="userId">
+                 <input hidden type="text" value="${fuser.username}" name="userName">
+                 <input hidden type="text" value="${fuser.headImg}" name="headImg">
+             </div>
+      </div>
+      </div>
+   </div>
+</div>
+<script>
+//将取到的值传入到localStorage
+var userId = $('input[name="userId"]').val();
+var userName = $('input[name="userName"]').val();
+var headImg = $('input[name="headImg"]').val();
+localStorage.setItem("key1",userId);
+localStorage.setItem("key2",userName);
+localStorage.setItem("key3",headImg);
+var contextPath = '${request.contextPath}';
+var id = ${fuser.id};
+var editUrl = "/jly/aFamilyMember/editFamilyMember?id="+id;
+var watchUrl = "/jly/aFamilyMember/watchFamilyMember?id="+id;
+var showAloneUrl = "/jly/aFamilyMember/showAlone?id="+id;
+function editFamily(){
+   $("#app-content").load(editUrl);
+}
+function familyTable(){
+  var showfamilyurl=contextPath+"/aFamilyMember/familyTable"
+        $('#app-content').load(showfamilyurl+"?rid="+id);
+    }
+function addFamlily(){
+      $('#app-content').load("${request.contextPath}/aFamilyMember/insertfamily")
+}
+function watchFamily(){
+  $("#app-content").load(showAloneUrl);
+}
+</script>
+</body>
+<style>
+.content-title{
+  height:30%;
+  padding-top:25%;
+  font-size:20px;
+  font-weight:900;
+}
+.content-content{
+  height:70%;
+  font-size:25px;
+  color:rgb(99,184,220);
+  cursor:pointer;
+  padding-top:5%;
+}
+.info{
+  min-height:839px;
+  width:100%;
+}
+#itemA{
+  margin:10px;
+}
+#itemA:hover{
+  color:black;
+}
+.title{
+  height:80px;
+  width:100%;
+  text-align:center;
+  padding-top:25px;
+  color:rgb(99,184,220);
+  border:1px solid #eee;
+}
+.content{
+  height:759px;
+  width:100%;
+  display:flex;
+}
+.content-itemA{
+  height:100%;
+  width:50%;
+  padding:3% 5% 9% 15%;
+  text-align:center;
+}
+.content-itemB{
+  height:100%;
+  width:50%;
+  padding:3% 15% 9% 5%;
+   text-align:center;
+}
+.content-item-blank{
+  background-image:url(img/famliyTable_bg.png);
+  background-position:center;
+  height:100%;
+  width:100%;
+}
+</style>
+</html>

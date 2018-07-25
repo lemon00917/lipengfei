@@ -1,0 +1,45 @@
+<!-- Sidebar menu-->
+<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+<aside class="app-sidebar">
+    <div class="app-sidebar__user">
+    
+    <img class="app-sidebar__user-avatar" src="${request.contextPath}/img/pig.jpg" height="64" width="64" alt="User Image">
+        <div>
+            <p class="app-sidebar__user-name">小猪佩奇</p>
+            <p class="app-sidebar__user-designation">ID：399272</p>
+        </div>
+    </div>
+    <ul class="app-menu" id="menu">
+        <li><a class="app-menu__item" href="/jly/main"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">档案信息</span></a></li>
+        <li><a class="app-menu__item" href="/jly/healthAnalyse"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">健康分析</span></a></li>
+        <li><a class="app-menu__item" href="/jly/record/recordMain"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">医疗检测</span></a></li>
+        <li><a class="app-menu__item" href="/jly/jltz/mainJltz"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">检测报告</span></a></li>
+        <li><a class="app-menu__item" href="index.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">处方调理</span></a></li>
+        <li class="treeview" id="treeview"><a class="app-menu__item" href="####" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">三级菜单测试</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+              <ul class="treeview-menu">
+                <li><a class="treeview-item" href="#" id="treeview-menu-select">
+                <i class="icon fa fa-circle-o"></i><span class="app-menu__label">测试一</span><i class="iconfont icon-you" id="icon"></i></a></li>
+                <ul id="treeview-item-select">
+	                 <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> 1.1</a></li>
+	                 <li><a class="treeview-item" href="form-samples.html"><i class="icon fa fa-circle-o"></i> 1.2</a></li>
+	                 <li><a class="treeview-item" href="form-notifications.html"><i class="icon fa fa-circle-o"></i> 1.3</a></li>
+                </ul>
+                <li><a class="treeview-item" href="form-custom.html"><i class="icon fa fa-circle-o"></i> 测试二</a></li>
+                <li><a class="treeview-item" href="form-samples.html"><i class="icon fa fa-circle-o"></i> 平测试三</a></li>
+                <li><a class="treeview-item" href="form-notifications.html"><i class="icon fa fa-circle-o"></i> 测试四</a></li>
+            </ul>
+        </li>
+    </ul>
+</aside>
+<script src="${request.contextPath}/js/jquery-3.2.1.min.js"></script>
+<script>
+$(function(){
+     var userId = localStorage.getItem("key1");
+	var userName = localStorage.getItem("key2");
+	var headImg = localStorage.getItem("key3");
+	/*   alert(headImg); */
+	$(".app-sidebar__user-name").replaceWith("<p class='app-sidebar__user-name'>"+userName+"</p>");
+	$(".app-sidebar__user-designation").replaceWith("<p class='app-sidebar__user-designation'>"+userId+"</p>");
+	$('.app-sidebar__user-avatar').attr('src', headImg);  
+})
+</script>

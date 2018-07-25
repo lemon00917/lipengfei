@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/menu.css">
+    <link rel="stylesheet" type="text/css" href="css/iconfont.css">
+    <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="app sidebar-mini rtl">
+
+ <!-- 顶部栏 -->
+	@{ include("header.html")
+        			     @{ 
+        			     @} 
+        		    @}
+
+<!-- 侧边栏-->
+@{ include("sidebar.html")
+        			     @{ 
+        			     @} 
+        		    @}
+
+<!-- 中间部分主要内容 -->
+<main class="app-content" id="app-content">
+</main>
+<!-- Essential javascripts for application to work-->
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="bootstrap/js/bootstrap.js"></script>
+<script src="js/main.js"></script>
+<!-- 顶部消息加载提示-->
+<script src="js/plugins/pace.min.js"></script>
+<script type="text/javascript">
+</script>
+<script>
+  $(function(){
+  $("#app-content").load("/jly/healthAnalyseContent")
+  })
+  
+</script>
+</body>
+<style>
+ .app-content{
+   background:#CDEDFC;
+ }
+</style>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+     <link rel="stylesheet" type="text/css" href="css/menu.css">
+    <link rel="stylesheet" type="text/css" href="css/iconfont.css">
+    <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="app sidebar-mini rtl">
+	<!-- 椤堕儴鏍� -->
+	@{ include("header.html")
+        			     @{ 
+        			     @} 
+        		    @}
+<!-- 宸﹁竟鑿滃崟鏍�-->
+	@{ include("sidebar.html")
+        			     @{ 
+        			     @} 
+        		    @}
+
+<!-- 涓棿閮ㄥ垎涓昏鍐呭 -->
+<main class="app-content" id="app-content">
+</main>
+<!-- Essential javascripts for application to work-->
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="bootstrap/js/bootstrap.js"></script>
+<script src="js/main.js"></script>
+<!-- 椤堕儴娑堟伅鍔犺浇鎻愮ず-->
+<script src="js/plugins/pace.min.js"></script>
+<script type="text/javascript">
+   var contextPath = '${request.contextPath}';
+   $(function(){
+     $("#app-content").load("/jly/mainRecordInfo");
+   })
+</script>
+</body>
+<style>
+</style>
+</html>

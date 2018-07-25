@@ -1,0 +1,96 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+.tab{
+	position: relative;
+}
+.logo{
+	display: inline;
+}
+.close{
+	margin: 4px 4px 0 0;
+	float: right;
+	display: inline;
+}
+.top{
+	margin:40px 0 15px 72px;
+	color:rgb(62,147,195);
+}
+.content{
+	position: absolute;
+	height: 900px;
+	width: 100%;
+}
+.bg{
+	background-image: url("../img/login-bg.png");
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+.identify{
+ font-size:8px;
+ margin-left:-110px;
+ background: #fff;
+ background-position: center;
+ border-radius:25px;
+ padding:8px;
+ cursor:pointer;
+}
+.identify:hover{
+	background:#eee;
+}
+.identify2{
+ font-size:8px;
+ margin-left:-110px;
+ background: #eee;
+ background-position: center;
+ border-radius:25px;
+ padding:8px;
+ cursor:pointer;
+}
+.content-dtail{
+	margin: 40px  0  0 60%;
+}
+input[type=text],input[type=password]{
+	margin-top: 20px;
+	height: 35px;
+	width: 300px;
+	padding: 5px 0 5px 15px;
+	border: 1px solid rgb(62,147,195);
+	border-radius:35px;
+	background: rgb(138, 211, 244);
+	color:  #fff;
+	outline:none;
+}
+ input:focus {
+    border: 2px solid rgb(62,147,195);
+}
+input[type="submit"]{
+	font-size: 15px;
+	font-weight: 900;
+	margin: 40px 0 10px 10px;
+	height: 40px;
+	width: 300px;
+	color:  rgb(138, 211, 244);
+	background: #fff;
+	border: 1px solid rgb(138, 211, 244);
+	border-radius: 35px;
+	cursor:pointer;
+	outline:none;
+}
+.text>a{
+	margin: 20px  0 0 135px;
+	color: #a9a9a9;
+	font-size: 12px;
+	text-decoration:none
+}
+.icon{
+	margin: 20px  0 0 40px;
+	display: flex;
+	cursor:pointer;
+}
+.item{
+	margin-right: 20px;
+}

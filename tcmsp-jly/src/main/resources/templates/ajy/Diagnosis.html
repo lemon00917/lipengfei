@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>中医非药物治疗管理系统 </title>
+	
+     <!-- Bootstrap -->
+    <link href="${request.contextPath}/gentelella/doc/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="${request.contextPath}/gentelella/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="${request.contextPath}/gentelella/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="${request.contextPath}/gentelella/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- layui -->
+    <link rel="stylesheet" href="${request.contextPath}/layui/css/layui.css">
+    <!-- 自定义 -->
+	<link href="${request.contextPath}/css/admin.css" rel="stylesheet">
+	<!-- easyui -->
+	<link rel="stylesheet" href="${request.contextPath}/easyui/css/easyui.css">
+    <link rel="stylesheet" href="${request.contextPath}/css/kdys.css">
+	<link href="${request.contextPath}/gentelella/vendors/jquery.tagsinput/src/jquery.tagsinput.css" rel="stylesheet"> 
+    <!-- Custom Theme Style -->
+    <link href="${request.contextPath}/gentelella/build/css/custom.css" rel="stylesheet">
+  </head>
+	 <body>
+       <form id="myform" method="post" action="${request.contextPath}/recievepatient" onsubmit="return patientredis()" data-parsley-validate class="form-horizontal form-label-left">                      
+			<div class="col-md-6 col-xs-12">
+                <div class="x_panel"style="margin:0!important;">
+                  <div class="x_title">
+                    <h2>诊断信息 </h2><h3>(<span class="required" style="color:red;">*</span>&nbsp;为必填项)</h3>
+                    <div class="clearfix"></div>
+          
+                  </div>
+                  <div class="x_content">
+                   <div class="x_title">
+                    <h4>主诉病史 </h4>
+                    <div class="clearfix"></div>
+          
+                  </div>
+                       <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">主诉:</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text"  name="chiefComplaint" onkeydown="if(event.keyCode==13){focusNextInput(this);return false;}"   value='${Emr.chiefComplaint!""}' class="form-control col-md-10"/>
+                        </div>
+                      </div>
+                     
+                     
+                     
+                      <div class="form-group">
+                        <label class="col-sm-3 control-label">现病史:</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <div class="input-group">
+                          <input type="text" value='${Emr.illnessHistory.presentIllness!""}' id="illnessHistorypresentIllness"  name="illnessHistory.presentIllness"  onkeydown="if(event.keyCode==13){$('#sx').focus();return false;}" class="form-control col-md-10"/>
+                            <div class="input-group-btn">
+                             <button type="button" style="margin:0!important;" class="btn btn-primary" onclick="openmodal()">更多</button> 
+                            </div>
+                          </div>
+                         
+                        </div>
+                      </div>
+                          
+
+                  <div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                          </button>
+                          <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                        </div>
+                        <div class="modal-body">
+                   
+                  <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">既往史：</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="passedIllness"  value='${Emr.illnessHistory.passedIllness!""}' onkeydown="if(event.keyCode==13){focusNextInput(this);return false;}"name="illnessHistory.passedIllness" class="form-control col-md-10"/>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">过敏史：</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="allergicHistory" name="illnessHistory.allergicHistory" onkeydown="if(event.keyCode==13){focusNextInput(this);return false;}"value='${Emr.illnessHistory.allergicHistory!""}' class="form-control col-md-10"/>
+                        </div>
+                      </div>
+                       <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">家族史：</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text"  id="familyHistory" name="illnessHistory.familyHistory" onkeydown="if(event.keyCode==13){focusNextInput(this);return false;}" value='${Emr.illnessHistory.familyHistory!""}' class="form-control col-md-10"/>
+                        </div>
+                        
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">月经史：</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" name="illnessHistory.menstruationHistory" id="menstruationHistory" onkeydown="if(event.keyCode==13){focusNextInput(this);return false;}"value='${Emr.illnessHistory.menstruationHistory!""}' class="form-control col-md-10"/>
+                        </div>
+                        
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">婚育史：</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="marriageHistory" name="illnessHistory.marriageHistory"onkeydown="if(event.keyCode==13){focusNextInput(this);return false;}" value='${Emr.illnessHistory.marriageHistory!""}' class="form-control col-md-10"/>
+                        </div>
+                        
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">个人史：</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="personalIllness"  name="illnessHistory.personalIllness" onkeydown="if(event.keyCode==13){return false;}" value='${Emr.illnessHistory.personalIllness!""}' class="form-control col-md-10"/>
+                        </div>
+                        
+                      </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" onclick="closemodal()">关闭</button>
+                          <button type="button" class="btn btn-default" data-dismiss="modal">保存</button>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+  <div class="x_title">
+                    <h4>望闻问切</h4>
+                   <div class="clearfix"></div>
+                  </div>
+                    
+                     
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">舌象:</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <div class="input-group demo2">
+                            <input type="text" id='sx' name="illnessHistory.tongue" onkeydown="if(event.keyCode==13){focusNextInput(this);return false;}" value='${Emr.illnessHistory.tongue!""}' class="form-control col-md-10"/>
+                            <span class="input-group-addon"><i class="fa fa-caret-down"></i></span>
+                          </div>
+                        </div>
+                      </div>
+                        
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">脉象:</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <div class="input-group demo2">
+                            <input type="text"  id="MX"  name="illnessHistory.moss"  onkeydown="if(event.keyCode==13){focusNextInput(this);return false;}"  value='${Emr.illnessHistory.moss!""}'  class="form-control col-md-10"/>
+                            <span class="input-group-addon" ><i class="fa fa-caret-down"></i></span>
+                          </div>
+                        </div>
+                      </div>
+                 
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">苔象:</label>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                          <div class="input-group demo2">
+                            <input type="text"  id='tx'  placeholder="苔质" name="illnessHistory.pulse" onkeydown="if(event.keyCode==13){focusNextInput(this);return false;}"  class="form-control col-md-10" value='${Emr.illnessHistory.pulse!""}' />
+                            <span class="input-group-addon" ><i class="fa fa-caret-down" ></i></span>
+                          </div>
+                        </div>
+                       
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                          <div class="input-group demo2">
+                            <input type="text"  id='ts'  placeholder="苔色"  name="illnessHistory.pulcolor" onkeydown="if(event.keyCode==13){focusNextInput(this);return false;}"  class="form-control col-md-10" value='${Emr.illnessHistory.pulcolor!""}' />
+                            <span class="input-group-addon" ><i class="fa fa-caret-down" ></i></span>
+                          </div>
+                        </div>
+                      </div>
+                    
+                     
+                        <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">体征:</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" name="illnessHistory.tz"  id='tz' value='${Emr.illnessHistory.tz!""}' onkeydown="if(event.keyCode==13){$('.tagsinput').find('div').eq(0).find('input').focus();return false;}" class="form-control col-md-10"/>
+                        </div>
+                      </div>
+                      <div class="form-group" id="symptommain">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">其它症状:</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text"  name="symptom"  id="symptom"   value='${Emr.symptom!""}' class="form-control col-md-10"/>
+                        </div>
+                      </div>
+            
+                       <div class="x_title" >
+                    <h4>临床诊断</h4>
+                   
+                    <div class="clearfix"></div></div>
+                        <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">中医诊断:(<span class="required" style="color:red;">*</span>)</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id='disease'  class="form-control col-md-10" required="required" onkeydown="if(event.keyCode==13){focusNextInput(this);return false;}" value='${Emr.disease!""}'  name="disease" />
+                        </div>
+                      </div>
+                        <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">中医辩证:</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text"  name="symptommould"  onkeydown="if(event.keyCode==13){focusNextInput(this);return false;}" id='symptommould' value='${Emr.symptommould!""}'   class="form-control col-md-10"/>
+                        </div>
+                      </div>
+                        <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">西医诊断:</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text"  id='xiyi' name="diseasewest" value='${Emr.diseasewest!""}'   class="form-control col-md-10"/>
+                        </div>
+                      </div>
+                      
+                     
+                  </div>
+                   <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                      <button type="submit"  class="btn btn-success" style="float: right;">提交诊断</button>  
+                        </div>
+                      </div>
+                  </div>
+		</div>
+        </form>
+        </body>
+    <script src="${request.contextPath}/gentelella/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="${request.contextPath}/gentelella/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="${request.contextPath}/gentelella/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="${request.contextPath}/gentelella/vendors/nprogress/nprogress.js"></script>
+    <!-- ECharts -->
+    <script src="${request.contextPath}/gentelella/vendors/echarts/dist/echarts.min.js"></script>
+    <!-- layui -->
+    <script src="${request.contextPath}/layui/layui.js"></script> 
+    <!-- Custom Theme Scripts -->
+    <script src="${request.contextPath}/gentelella/build/js/custom.min.js"></script>
+    <!-- easyui -->
+    <script type="text/javascript" src="${request.contextPath}/js/jquery-ui.min.js"></script>
+    <script src="${request.contextPath}/easyui/jquery.easyui.min.js"></script>
+    <script src="${request.contextPath}/js/jquery.form.js"></script>
+    <script src="${request.contextPath}/gentelella/vendors/devbridge-autocomplete/dist/jquery.autocomplete.js"></script>
+    <script src="${request.contextPath}/gentelella/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+ 	<script>
+    $("#disease" ).autocomplete({
+    serviceUrl:"/search/dieasename",
+    paramName:"name",      
+    dataType:"json",
+    transformResult:function(response){  
+	    return {
+	            suggestions: $.map(response, function(dataItem) {
+	                return { value: dataItem.name, data: dataItem.pinyin };
+	            })
+	        };
+	    },
+	onSelect:function(suggestions){
+	 $("#disease" ).focus();
+	},
+	minChars:1,
+	onSearchError:function (query, jqXHR, textStatus, errorThrown) {
+	if(jqXHR.responseText.trim()=="timeout"){
+	 document.location.reload();
+	 }
+	}
+	
+    });   
+/*   
+ $("#birds" ).autocomplete({
+    serviceUrl:"/serach",
+    paramName:"q",
+    dataType:"json",
+    transformResult:function(response){  
+	    return {
+	            suggestions: $.map(response, function(dataItem) {
+	                return { value: dataItem.name, data: dataItem.pinyin };
+	            })
+	        };
+	    },
+	delimiter:",",
+	tabDisabled:"true",
+	autoSelectFirst:true,
+	 focus: function() {
+          // prevent value inserted on focus
+          return false;
+        }  
+ 
+    });  */
+ $('#symptom').tagsInput({
+    autocomplete_url:'${request.contextPath}/gentelella/vendors/devbridge-autocomplete/dist/jquery.autocomplete.js', 
+    autocomplete:{
+    serviceUrl:"/serach",
+    paramName:"q",
+    dataType:"json",
+    transformResult:function(response){  
+	    return {
+	            suggestions: $.map(response, function(dataItem) {
+	                return { value: dataItem.name, data: dataItem.pinyin };
+	            })
+	        };
+	    },
+	onSelect:function(suggestions){
+	var tagssystom= $("#symptommain").find("input[name='symptom']").val();
+	var ts= tagssystom.split(",");
+	for(var i=0;i<ts.length;i++){
+	if(ts[i]==this.value){
+	$(this).focus();
+	layer.msg("症状重复", {
+    		    time: 400//20s后自动关闭
+    		  });
+	return;
+	}
+	}
+	$("#symptommain").find("input[name='symptom']").addTag(this.value);
+	$(this).focus();
+	},
+    autoSelectFirst:true,
+    onSearchError:function (query, jqXHR, textStatus, errorThrown) {
+	if(jqXHR.responseText.trim()=="timeout"){
+	 document.location.reload();
+	 }
+	}
+	},
+   
+   'defaultText':'',
+	height:'100px',
+    width:'auto',
+});  
+
+
+$("#MX" ).autocomplete({
+    serviceUrl:"/search/sysbasefield",
+    paramName:"valuefield",
+    params:{fieldname:'脉象'},
+    dataType:"json",
+    transformResult:function(response){  
+	    return {
+	            suggestions: $.map(response, function(dataItem) {
+	                return { value: dataItem.displayfield, data: dataItem.valuefield };
+	            })
+	        };
+	    },
+	onSelect:function(suggestions){
+	    $("#MX" ).focus();
+	},
+	onSearchError:function (query, jqXHR, textStatus, errorThrown) {
+	if(jqXHR.responseText.trim()=="timeout"){
+	 document.location.reload();
+	 }
+	},
+	autoSelectFirst:true,
+	minChars:1
+    });  
+    $("#tx" ).autocomplete({
+    serviceUrl:"/search/sysbasefield",
+    paramName:"valuefield",
+    params:{fieldname:'苔象'},
+    dataType:"json",
+    transformResult:function(response){  
+	    return {
+	            suggestions: $.map(response, function(dataItem) {
+	                return { value: dataItem.displayfield, data: dataItem.valuefield };
+	            })
+	        };
+	    },
+	onSelect:function(suggestions){
+	 $("#tx" ).focus();
+	},
+	minChars:1
+	
+    }); 
+        $("#ts" ).autocomplete({
+    serviceUrl:contextPath+"/search/sysbasefield",
+    paramName:"valuefield",
+    params:{fieldname:'苔色'},
+    dataType:"json",
+    transformResult:function(response){  
+	    return {
+	            suggestions: $.map(response, function(dataItem) {
+	                return { value: dataItem.displayfield, data: dataItem.valuefield };
+	            })
+	        };
+	    },
+	onSelect:function(suggestions){
+	 $("#ts" ).focus();
+	},
+	minChars:1
+	
+    });   
+    $("#sx" ).autocomplete({
+    serviceUrl:"/search/sysbasefield",
+    paramName:"valuefield",
+    params:{fieldname:'舌象'},
+    dataType:"json",
+    transformResult:function(response){  
+	    return {
+	            suggestions: $.map(response, function(dataItem) {
+	                return { value: dataItem.displayfield, data: dataItem.valuefield };
+	            })
+	        };
+	    },
+    onSelect:function(suggestions){
+	    $("#sx" ).focus();
+	},
+	autoSelectFirst:true,
+	minChars:1,
+	onSearchError:function (query, jqXHR, textStatus, errorThrown) {
+	if(jqXHR.responseText.trim()=="timeout"){
+	 document.location.reload();
+	 }
+	}
+	
+    });  
+    
+    
+  function focusNextInput(thisInput)  
+    {   
+        var inputs = document.getElementsByTagName("input");   
+       
+        for(var i = 0;i<inputs.length;i++){   
+            // 如果是最后一个，则焦点回到第一个   
+            if(i==(inputs.length-1)){   
+                inputs[0].focus(); break;   
+            }else if(thisInput == inputs[i]){   
+                inputs[i+1].focus(); break;   
+            }   
+        }   
+  }   
+$('.tagsinput').find('div').eq(0).find('input').on('keydown',function(e){
+
+  if(e.keyCode==13){
+if(($('.tagsinput').find('div').eq(0).find('input').val())==""){
+  $('#disease').focus();}else{
+    var tagsystoms=$('.tagsinput').find('div').eq(0).find('input').val();
+    tagsystoms=tagsystoms.trim();
+    var tagssystom= $("#symptommain").find("input[name='symptom']").val();
+	var ts= tagssystom.split(",");
+	for(var i=0;i<ts.length;i++){
+	if(ts[i]==tagsystoms){
+	layer.msg("症状重复", {
+    		    time: 400//20s后自动关闭
+    		  });
+	$(this).focus();
+	return false;
+	}
+	}
+  
+  $("#symptommain").find("input[name='symptom']").addTag($('.tagsinput').find('div').eq(0).find('input').val());
+/* alert($("#symptommain").find("input[name='symptom']").val()) */
+	$('.tagsinput').find('div').eq(0).find('input').focus();
+  }
+  	return false;
+  }
+});
+
+ function closemodal(){
+ $("#passedIllness").val(passedIllness); 
+ $("#allergicHistory").val(allergicHistory); 
+ $("#familyHistory").val(familyHistory); 
+ $("#menstruationHistory").val(menstruationHistory); 
+ $("#marriageHistory").val(marriageHistory); 
+ $("#personalIllness").val(personalIllness); 
+$("#myModal").modal('hide');
+
+ }
+ var passedIllness;
+ var allergicHistory;
+ var familyHistory;
+ var menstruationHistory;
+ var marriageHistory;
+ var personalIllness;
+ function openmodal(){
+ passedIllness=$("#passedIllness").val(); 
+ allergicHistory=$("#allergicHistory").val();
+ familyHistory=$("#familyHistory").val();
+ menstruationHistory=$("#menstruationHistory").val();
+ marriageHistory=$("#marriageHistory").val();
+ personalIllness=$("#personalIllness").val();
+ $("#myModal").modal('show');
+ }
+
+/*   $('.tagsinput').find('div').eq(0).find('input').on('blur',function(e){
+
+if(($('.tagsinput').find('div').eq(0).find('input').val())!=""&&$(".autocomplete-suggestions").css('display')!='block'){
+$("#symptommain").find("input[name='symptom']").addTag($('.tagsinput').find('div').eq(0).find('input').val());
+}else{
+$(".autocomplete-suggestions").css('display','none');
+alert($('.tagsinput').find('div').eq(0).find('input').val())
+$("#symptommain").find("input[name='symptom']").addTag($("#symptommain").find("input[name='symptom']").val());
+}
+
+
+}); 
+ */
+  layui.use(['layer', 'layer'], function(){
+		  var layer = layui.layer;
+		  layer = layui.layer;
+		});
+</script>
+

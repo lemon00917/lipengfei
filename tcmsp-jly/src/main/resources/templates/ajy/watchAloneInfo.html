@@ -1,0 +1,198 @@
+<meta charset="utf-8">
+<head>
+ <title>个人档案信息</title>
+</head>
+<body>
+<form class="form-horizontal" id="saveAlone"  role="form">
+	<div class="container-fluid">
+		<div class="row clearfix">
+			<div class="col-md-4 column">
+			  <div class="form-group">
+			   <div class="col-md-offset-2" id="headImg">
+			      <img  alt=".."  id="thumburlShow" src="${data.headImg}" height="128" width="128" style="border-radius:64px;" />
+			   </div>
+			  </div>
+			</div>
+			<div class="col-md-4 column" style="margin-top:20px">
+			   <div class="form-group">
+			        <div class="col-xs-8">
+						 <label for="form-label">ID</label>
+						 <input type="text" class="form-control" name="userBriefid" value='${data.userBriefid}' readonly="readonly"/>
+						 <input hidden name="id" value='${data.id}'> 
+						 <input hidden name="userId" value='${data.userId}'>
+                         <input hidden name="relationId" value='${data.relationId}'>
+				   </div>
+				</div>
+			</div>
+			
+			<div class="col-md-4 column" style="margin-top:20px">
+			   <div class="form-group">
+			        <div class="col-xs-8">
+						 <label for="form-label">关系</label>
+						  <input type="text" class="form-control" name="sex" readonly="readonly" value="${data.relationName}"/>
+						 
+				   </div>
+				</div>
+			</div>	
+		</div>
+		
+		<div class="row clearfix">
+			<div class="col-md-4 column" style="margin-top:20px">
+			   <div class="form-group">
+			        <div class="col-xs-8">
+						 <label for="exampleInputEmail1">姓名</label>
+						 <input type="text" class="form-control" name="username" readonly="readonly" value="${data.username}"/>
+				   </div>
+				</div>
+			</div>
+			<div class="col-md-4 column" style="margin-top:20px">
+			   <div class="form-group">
+			        <div class="col-xs-8">
+						 <label for="form-label">性别</label>
+						  <input type="text" class="form-control" name="sex" readonly="readonly" value="${data.sex}"/>
+						 
+				   </div>
+				</div>
+			</div>
+			<div class="col-md-4 column" style="margin-top:20px">
+			   <div class="form-group">
+			        <div class="col-xs-8">
+						 <label for="exampleInputEmail1">年龄</label>
+						 <input type="text" class="form-control" readonly="readonly" name="age" value="${data.age}" />
+				   </div>
+				</div>
+			</div>
+		</div>
+	 <div class="row clearfix">
+			<div class="col-md-4 column" style="margin-top:20px">
+			   <div class="form-group">
+			        <div class="col-xs-8">
+						 <label for="exampleInputEmail1">民族</label>
+						 <input type="text" class="form-control" readonly="readonly" name="nation" value="${data.nation}"/>
+				   </div>
+				</div>
+			</div>
+			<div class="col-md-4 column" style="margin-top:20px">
+			   <div class="form-group">
+			        <div class="col-xs-8">
+						 <label for="exampleInputEmail1">身高</label>
+						 <input type="text" class="form-control" readonly="readonly" name="height" value='${data.height}' />
+				   </div>
+				</div>
+			</div>
+			<div class="col-md-4 column" style="margin-top:20px">
+			   <div class="form-group">
+			        <div class="col-xs-8">
+						 <label for="exampleInputEmail1">体重</label>
+						 <input type="text" class="form-control" readonly="readonly" name="weight"  value='${data.weight}'/>
+				   </div>
+				</div>
+			</div>
+		</div>
+		<!-- 第4行 -->
+		<div class="row clearfix">
+			<div class="col-md-4 column" style="margin-top:20px">
+			   <div class="form-group">
+			        <div class="col-xs-8">
+						 <label for="exampleInputEmail1">职业</label>
+						 <input type="text" class="form-control" name="profession" readonly="readonly"  value='${data.profession}'  />
+				   </div>
+				</div>
+			</div>
+		</div>
+		<!-- 第五行 -->
+		<div class="row clearfix">
+			<div class="col-md-4 column" style="margin-top:20px">
+			   <div class="form-group">
+			        <div class="col-xs-8">
+						 <label for="exampleInputEmail1">身份证号</label>
+						 <input type="text" class="form-control" name="idCard" readonly="readonly"  value='${data.idCard}'/>
+				   </div>
+				</div>
+			</div>
+			<div class="col-md-4 column" style="margin-top:20px">
+			   <div class="form-group">
+			        <div class="col-xs-8">
+						 <label for="exampleInputEmail1" >家庭住址</label>
+						 <input type="text" class="form-control" readonly="readonly" name="address" value="${data.address}" />
+				   </div>
+				</div>
+			</div>
+		</div>
+        <div class="row clearfix">
+			<div class="col-md-4 column" style="margin-top:20px">
+			     <label for="radio-inline" >病史</label>
+			   <div class="form-group">
+			    <div class="col-xs-8">
+			            
+				         <span class="radio-inline pay_list_c1 on">
+				       <input hidden id="illhistory"  readonly="readonly" value='${data.isIllnesshistory}'>
+	                     <input type="radio" class="radioclass" readonly="readonly" name="isIllnesshistory" 
+	                     onchange="illnesshistoryDescStatus()"  value="1">有
+	                   </span>
+	                   <span class="radio-inline pay_list_c1 on">
+	                    <input type="radio"  class="radioclass"  name="isIllnesshistory" 
+	                    value="0" onchange="illnesshistoryDescStatus()" >无
+	                   </span>
+	                 </div>
+				</div>
+			</div>
+		</div>
+		<!-- 第七行 -->
+		<div class="row clearfix" id="illnesshistoryDesc">
+			<div class="col-md-4 column" style="margin-top:20px">
+			   <div class="form-group">
+			     <div class="col-xs-8">
+						 <label for="exampleInputEmail1">病史说明</label>
+						 <textarea type="text" class="form-control" name="illnesshistoryDesc"  readonly="readonly" 
+						 rows="3" value='${data.illnesshistoryDesc}'>${data.illnesshistoryDesc}</textarea>
+				   </div>
+				</div>
+			</div>
+		</div>
+  </div>
+</form>
+<script src="${request.contextPath}/js/jquery.form.js"></script>
+<script>
+var isIllnesshistory=$("#illhistory").val();
+  $("input[name=isIllnesshistory][value=" + isIllnesshistory + "]").attr("checked", true);
+
+    illnesshistoryDescStatus();
+    $(function(){
+      illnesshistoryDescStatus();
+    })
+    function illnesshistoryDescStatus(){
+       var val=$('input:radio[name="isIllnesshistory"]:checked').val();
+       if(val == 0){
+         $("#illnesshistoryDesc").hide();
+       }
+       else{
+         $("#illnesshistoryDesc").show();
+       }
+    }
+  </script>
+</body>
+<style>
+#upImg{
+  z-index:20px;
+  display:absolute;
+  margin:-70px 0 0 30px;
+  opacity: 0;
+  cursor:pointer;
+}
+.pay_list_c1 {
+width: 24px;
+height: 18px;
+float: left;
+padding-top: 3px;
+cursor: pointer;
+text-align: center;
+margin-right: 10px;
+background-image: url(images/inputradio.gif);
+background-repeat: no-repeat;
+background-position: -24px 0;
+}
+.on {
+background-position: 0 0;
+}
+</style>

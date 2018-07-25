@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdutcm.tcms.sys.mapper.UserRoleMapper">
+
+	
+	<insert id="insertuserrole" parameterType="com.cdutcm.tcms.sys.entity.UserRole"  >
+		insert into sys_user_role(id,userid,roleid) values(#{id},#{userid},#{roleid})
+	</insert>
+	<delete id="deleteuserrolebyuserid" parameterType="long" >
+		delete from sys_user_role where id=#{userid}
+	</delete>
+	<select id="selectrolebyuserid" parameterType="long" resultType="com.cdutcm.tcms.sys.entity.Role">
+	SELECT case WHEN id in(SELECT r.id FROM sys_user_role sys,sys_role r  WHERE sys.roleid=r.id and sys.userid = #{userid}) then 'true' else 'false' END AS hasrole ,id,role_name,dept_id,description  FROM sys_role 
+	</select>
+	<delete id="deleteuserrolebyroleid" parameterType="long" >
+		delete from sys_user_role where id=#{roleid}
+	</delete>
+	<select id="selectallrolebyuserid" parameterType="long" resultType="com.cdutcm.tcms.sys.entity.Role">
+	SELECT r.id, r.role_name,r.dept_id,r.description FROM sys_user_role sys,sys_role r  WHERE sys.roleid=r.id and sys.userid = #{userid}
+	</select>
+</mapper>

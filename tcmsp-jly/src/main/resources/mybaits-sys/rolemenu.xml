@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdutcm.tcms.sys.mapper.RoleMenuMapper">
+
+	
+	<insert id="insertrolemenu" parameterType="com.cdutcm.tcms.sys.entity.RoleMenu"  >
+		insert into sys_role_menu(id,roleid,menuid) values(#{id},#{roleid},#{menuid})
+	</insert>
+	<delete id="deleterolemenubyroleid" parameterType="long" >
+		delete from sys_role_menu where id=#{roleid}
+	</delete>
+	<!-- <select id="selectmenubyroleid" parameterType="long" resultType="com.cdutcm.tcms.sys.entity.Menu">
+	select sys.id,sys.menu_id,sys.parent_id,sys.menu_name,sys.menu_url,sys.menu_type,sys.params,sys.icon from sys_menu sys,sys_role_menu sym where sym.menuid=sys.menu_id and roleid=#{id}
+	</select> -->
+	<delete id="deleterolemenubymenuid" parameterType="long" >
+		delete from sys_role_menu where id=#{menuid}
+	</delete>
+</mapper>

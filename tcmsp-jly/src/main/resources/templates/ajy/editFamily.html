@@ -1,0 +1,312 @@
+<meta charset="utf-8">
+<head>
+ <title>个人档案信息</title>
+</head>
+<body>
+<form class="form-horizontal" id="saveAlone"  role="form">
+	<div class="container-fluid">
+		<div class="row clearfix">
+			<div class="col-md-4 column">
+			  <div class="form-group">
+			   <div class="col-md-offset-2" id="headImg">
+			      <input type="hidden" name="headImg"  id="thumbUrl" value="${data.headImg}"/>
+			      <img  alt=".."  id="thumburlShow" src="${data.headImg}" height="128" width="128" style="border-radius:64px;" />
+			      <input type="file" name="File" id="upImg" onchange="setImg(this)" style="height: 128px;"/>
+			   </div>
+			  </div>
+			</div>
+			<div class="col-md-4 column" style="margin-top:20px">
+			   <div class="form-group">
+			        <div class="col-xs-8">
+						 <label for="form-label">ID</label>
+						 <input type="text" class="form-control" name="userBriefid" value='${data.userBriefid}' readonly="readonly"/>
+						 <input hidden name="id" value='${data.id}'> 
+						   <input hidden name="userId" value='${data.userId}'>
+                           <input hidden id="relationId" name="relationId" value='${data.relationId}'>
+				   </div>
+				</div>
+			</div>
+		<div class="col-md-4 column" style="margin-top:20px">
+			<div class="form-group">
+					<div class="col-xs-8">
+						 <label for="form-label">关系</label>
+						 <select type="text" class="form-control" name="relationName"  style="height:35px;">
+						   @for(dict in dicts){
+				            @if(dict.name=="关系"){
+				            @for(dictItem in dict.dictItem){
+				            @if(data.relationName==dictItem.name){
+				  				<option value="${data.relationName}" selected>${data.relationName}</option>
+				  				@}else{
+				  				<option value="${dictItem.name}">${dictItem.name}</option>
+				  				@}
+				 				@}
+				 				@}
+				 				@}
+						 </select>
+				   </div>
+				</div>
+			</div>
+		</div>
+		<div class="row clearfix">
+			<div class="col-md-4 column" style="margin-top:20px">
+			   <div class="form-group">
+			        <div class="col-xs-8">
+						 <label for="exampleInputEmail1">姓名</label>
+						 <input type="text" class="form-control" name="username" value="${data.username}"/>
+				   </div>
+				</div>
+			</div>
+			<div class="col-md-4 column" style="margin-top:20px">
+			   <div class="form-group">
+			        <div class="col-xs-8">
+						 <label for="form-label">性别</label>
+						 <select type="text" class="form-control" name="sex" style="height:35px;">
+						    @for(dict in dicts){
+            @if(dict.name=="性别"){
+            @for(dictItem in dict.dictItem){
+            @if(data.sex==dictItem.name){
+  				<option value="${data.sex}" selected>${data.sex}</option>
+  				@}else{
+  				<option value="${dictItem.name}">${dictItem.name}</option>		
+ 				@}
+ 				@}
+ 				@}
+ 				@}
+						 </select>
+				   </div>
+				</div>
+			</div>
+			<div class="col-md-4 column" style="margin-top:20px">
+			   <div class="form-group">
+			        <div class="col-xs-8">
+						 <label for="exampleInputEmail1">年龄</label>
+						 <input type="text" class="form-control" name="age" value="${data.age}" />
+				   </div>
+				</div>
+			</div>
+		</div>
+	 <div class="row clearfix">
+			<div class="col-md-4 column" style="margin-top:20px">
+			   <div class="form-group">
+			        <div class="col-xs-8">
+						 <label for="exampleInputEmail1">民族</label>
+						  <select type="text" class="form-control" name="nation"  style="height:35px;">
+						   @for(dict in dicts){
+				            @if(dict.name=="民族"){
+				            @for(dictItem in dict.dictItem){
+				            @if(data.nation==dictItem.name){
+				  				<option value="${data.nation}" selected>${data.nation}</option>
+				  				@}else{
+				  				<option value="${dictItem.name}">${dictItem.name}</option>
+				  				@}
+				 				@}
+				 				@}
+				 				@}
+						 </select>
+				   </div>
+				</div>
+			</div>
+			<div class="col-md-4 column" style="margin-top:20px">
+			   <div class="form-group">
+			        <div class="col-xs-8">
+						 <label for="exampleInputEmail1">身高</label>
+						 <input type="text" class="form-control" name="height" value='${data.height}' />
+				   </div>
+				</div>
+			</div>
+			<div class="col-md-4 column" style="margin-top:20px">
+			   <div class="form-group">
+			        <div class="col-xs-8">
+						 <label for="exampleInputEmail1">体重</label>
+						 <input type="text" class="form-control"  name="weight"  value='${data.weight}'/>
+				   </div>
+				</div>
+			</div>
+		</div>
+		<!-- 第4行 -->
+		<div class="row clearfix">
+			<div class="col-md-4 column" style="margin-top:20px">
+			   <div class="form-group">
+			        <div class="col-xs-8">
+						 <label for="exampleInputEmail1">职业</label>
+						 <input type="text" class="form-control" name="profession"  value='${data.profession}'  />
+				   </div>
+				</div>
+			</div>
+		</div>
+		<!-- 第五行 -->
+		<div class="row clearfix">
+			<div class="col-md-4 column" style="margin-top:20px">
+			   <div class="form-group">
+			        <div class="col-xs-8">
+						 <label for="exampleInputEmail1">身份证号</label>
+						 <input type="text" class="form-control" name="idCard"  value='${data.idCard}'/>
+				   </div>
+				</div>
+			</div>
+			<div class="col-md-4 column" style="margin-top:20px">
+			   <div class="form-group">
+			        <div class="col-xs-8">
+						 <label for="exampleInputEmail1" >家庭住址</label>
+						 <input type="text" class="form-control" name="address" value="${data.address}" />
+				   </div>
+				</div>
+			</div>
+		</div>
+        <div class="row clearfix">
+			<div class="col-md-4 column" style="margin-top:20px">
+			     <label for="radio-inline" >病史</label>
+			   <div class="form-group">
+			    <div class="col-xs-8">
+			            
+				       <span class="radio-inline pay_list_c1 on">
+				       <input hidden id="illhistory" value='${data.isIllnesshistory}'>
+	                     <input type="radio" class="radioclass"  name="isIllnesshistory" 
+	                     onchange="illnesshistoryDescStatus()"  value="1">有
+	                   </span>
+	                   <span class="radio-inline pay_list_c1 on">
+	                    <input type="radio"  class="radioclass"  name="isIllnesshistory" 
+	                    value="0" onchange="illnesshistoryDescStatus()" >无
+	                   </span>
+	                 </div>
+				</div>
+			</div>
+		</div>
+		<!-- 第七行 -->
+		<div class="row clearfix" id="illnesshistoryDesc">
+			<div class="col-md-4 column" style="margin-top:20px">
+			   <div class="form-group">
+			        <div class="col-xs-8">
+						 <label for="exampleInputEmail1">病史说明</label>
+						 <textarea type="text" class="form-control" name="illnesshistoryDesc"  rows="3" value='${data.illnesshistoryDesc}'>${data.illnesshistoryDesc}
+				 	</textarea>
+				   </div>
+				</div>
+			</div>
+		</div>
+		<!-- 第8行 -->
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+			    <div class="col-md-offset-10">
+			       <button type="button"  class="btn btn-success btn-warning btn-lg" style="margin-right:10px" id="updateInfo">修改</button>
+			       <button type="button" class="btn btn-success btn-default btn-lg"  onclick="goback()">返回</button>
+			    </div>
+			</div>
+		</div>
+  </div>
+</form>
+<script src="${request.contextPath}/js/jquery.form.js"></script>
+<script>
+ var isIllnesshistory=$("#illhistory").val();
+  $("input[name=isIllnesshistory][value=" + isIllnesshistory + "]").attr("checked", true)
+  
+    illnesshistoryDescStatus();
+    $(function(){
+      illnesshistoryDescStatus();
+       $("#updateInfo").click(function(){
+         saveAlone();
+       })
+    })
+     var relationId=$("#relationId").val();
+    function illnesshistoryDescStatus(){
+       var val=$('input:radio[name="isIllnesshistory"]:checked').val();
+       if(val == 0){
+         $("#illnesshistoryDesc").hide();
+       }
+       else{
+         $("#illnesshistoryDesc").show();
+       }
+    }
+    //返回首页
+    function goback(){
+       $('#app-content').load(contextPath+"/aFamilyMember/familyTable?rid="+relationId); 
+    }
+    //用于进行图片上传，返回地址
+     function setImg(obj){
+            var f=$(obj).val();
+            if(f == null || f ==undefined || f == ''){
+                return false;
+            }
+            if(!/\.(?:png|jpg|bmp|gif|PNG|JPG|BMP|GIF)$/.test(f))
+            {
+               layer.msg("类型必须是图片(.png|jpg|bmp|gif|PNG|JPG|BMP|GIF)");
+                $(obj).val('');
+                return false;
+            }
+            var data = new FormData();
+            $.each($(obj)[0].files,function(i,file){
+                data.append('file', file);
+            });
+            
+            $.ajax({
+                type: "POST",
+                url: "${request.contextPath}/aFamilyMember/saveImg",
+                data: data,
+                cache: false,
+                contentType: false,    //不可缺
+                processData: false,    //不可缺
+                dataType:"json",
+                success: function(suc) {
+                    if(suc.code==0){
+                         
+                            $("#thumbUrl").val(suc.headImg);//将地址存储好
+                            $("#thumburlShow").attr("src",suc.headImg);//显示图片                                                              
+                        }else{
+                        layer.msg("上传失败");
+                        $("#url").val("");
+                        $(obj).val('');
+                    }
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                     layer.msg("上传失败，请检查网络后重试");
+                    $("#url").val("");
+                    $(obj).val('');
+                }
+            });
+        }
+        function saveAlone(){
+        
+		  $.ajax({
+                type: "POST",
+                url: contextPath+"/aFamilyMember/saveFamily",
+                data: $("#saveAlone").serialize(),
+                async:false,              
+                success: function(data) {
+                  if(data.status == "TS"){
+                  alert("修改成功！")
+                   $('#app-content').load(contextPath+"/aFamilyMember/familyTable?rid="+relationId); 
+                  }else{
+                     alert("修改失败！")
+                  }
+                },
+                error: function() {
+                alert("提交失败！")
+               }
+		 });
+}
+  </script>
+</body>
+<style>
+#upImg{
+  z-index:20px;
+  display:absolute;
+  margin: -120px 0 0 -30px;
+  opacity: 0;
+  cursor:pointer;
+}
+.pay_list_c1 {
+width: 24px;
+height: 18px;
+float: left;
+padding-top: 3px;
+cursor: pointer;
+text-align: center;
+margin-right: 10px;
+background-image: url(images/inputradio.gif);
+background-repeat: no-repeat;
+background-position: -24px 0;
+}
+.on {
+background-position: 0 0;
+}
+</style>

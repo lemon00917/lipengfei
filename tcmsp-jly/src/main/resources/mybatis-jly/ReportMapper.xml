@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdutcm.tcms.ajy.mapper.ReportMapper">
+	<sql id="Report_Columns">id,tzbs,jltz_id,sjys_id,health_score,record_id</sql>
+	<resultMap id="ReportResultMap" type="com.cdutcm.tcms.ajy.model.Report">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="tzbs" property="tzbs" jdbcType="VARCHAR" />
+		<result column="jltz_id" property="jltzId" jdbcType="BIGINT" />
+		<result column="sjys_id" property="sjysId" jdbcType="BIGINT" />
+		<result column="health_score" property="healthScore" jdbcType="VARCHAR" />
+		<result column="record_id" property="recordId" jdbcType="BIGINT" />
+		</resultMap>
+		<!-- 通过记录id查找 -->
+		<select id="selectByPrimaryKey" resultMap="ReportResultMap" parameterType="java.lang.Long" >
+		  select *
+		  from alone_report
+		  where
+		  id = #{id}
+		</select>
+		<!-- 添加 -->
+		<insert id="insert" parameterType="com.cdutcm.tcms.ajy.model.Record" >
+		insert into alone_report(id,tzbs,jltz_id,sjys_id,health_score,record_id)
+		values(#{id,jdbcType=BIGINT},#{tzbs,jdbcType=VARCHAR},#{jltzId,jdbcType=BIGINT},#{sjysId,jdbcType=BIGINT},
+		#{healthScore,jdbcType=VARCHAR},#{recordId,jdbcType=BIGINT})
+		</insert>
+		<!-- 通过记录id查找 -->
+		<select id="selectReportById" resultMap="ReportResultMap" parameterType="java.lang.Long" >
+		  select *
+		  from alone_report
+		  where
+		  record_id = #{id}
+		</select>
+</mapper>

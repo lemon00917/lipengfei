@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdutcm.tcms.ajy.mapper.RecordMapper">
+	<sql id="Record_Columns">id,family_member_id,detection_result,xl,tw,
+	tzbfb,sleep_time,gmt_create,gmt_modified</sql>
+	<resultMap id="RecordResultMap" type="com.cdutcm.tcms.ajy.model.Record">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="family_member_id" property="familyMemberId" jdbcType="BIGINT" />
+		<result column="detection_result" property="detectionResult" jdbcType="VARCHAR" />
+		<result column="xl" property="xl" jdbcType="VARCHAR" />
+		<result column="tw" property="tw" jdbcType="VARCHAR" />
+		<result column="tzbfb" property="tzbfb" jdbcType="VARCHAR" />
+		<result column="sleep_time" property="sleepTime" jdbcType="VARCHAR" />
+		<result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+		<result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
+		</resultMap>
+		
+		<!-- 添加 -->
+	<insert id="insert" parameterType="com.cdutcm.tcms.ajy.model.Record" >
+	insert into alone_record(id,family_member_id,detection_result,xl,tw,
+	tzbfb,sleep_time,gmt_create,gmt_modified)
+	values(#{id,jdbcType=BIGINT},#{familyMemberId,jdbcType=BIGINT},#{detectionResult,jdbcType=VARCHAR},
+	#{xl,jdbcType=VARCHAR},#{tw,jdbcType=VARCHAR},#{tzbfb,jdbcType=VARCHAR},#{sleepTime,jdbcType=VARCHAR},
+	#{gmtCreate,jdbcType=TIMESTAMP},#{gmtCreate,jdbcType=TIMESTAMP})
+	</insert>
+	
+	<select id="selectByUserId" resultMap="RecordResultMap" parameterType="java.lang.Long">
+	 select *
+	 from alone_record
+	 where
+	 family_member_id = #{id} 
+	 ORDER BY gmt_modified Desc
+	 limit 1
+	</select>
+	
+	<select id="selectRecordById" resultMap="RecordResultMap" parameterType="java.lang.Long">
+	 select *
+	 from alone_record
+	 where
+	 id = #{id}
+	</select>
+	
+	<select id="selectByDate" resultMap="RecordResultMap">
+	 select *
+	 from alone_record
+	 where
+	 family_member_id =#{familyMemberId,jdbcType=BIGINT} 
+	 and gmt_create =#{gmtCreate,jdbcType=TIMESTAMP}
+	</select>
+	
+	<select id="selectRecords" resultMap="RecordResultMap" parameterType="java.lang.Long">
+	 select *
+	 from alone_record
+	 where
+	 family_member_id = #{id}
+	</select>
+</mapper>

@@ -1,0 +1,19 @@
+<ul class="nav child_menu">
+    <!--遍历子菜单树-->
+    @for(childMenu in childMenus){ 
+    @ if(childMenu.submenu == null ){ 
+    <!--当前菜单的子菜单为空，直接显示当前菜单-->
+    <li>
+    <a href="#"><i class="${childMenu.icon}"></i> ${childMenu.menu_name} </a>
+    </li>
+    @}else{
+    <!--当前菜单的子菜单不为空-->
+    <li>
+        <!--先显示当前菜单-->
+        <a href="#"><i class="${childMenu.icon}"></i> ${childMenu.menu_name}</a>
+        <!--再继续递归本模板显示子菜单-->
+        @layout("/ajy/subMenu.html",{"childMenus":childMenu.submenu}){} 
+    </li>
+     @}
+    @} 
+</ul>
