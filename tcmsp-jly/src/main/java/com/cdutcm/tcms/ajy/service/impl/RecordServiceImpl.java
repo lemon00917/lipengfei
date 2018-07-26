@@ -94,7 +94,8 @@ public class RecordServiceImpl implements RecordService, SerialPortEventListener
 	@Override
 	public void jcStart() throws Exception {
 		filePath = getFilePath();
-		my.setSerialPortNumber();
+		String comPort = my.listPortChoices();
+		my.setSerialPortNumber(comPort);
 		my.getData(filePath);
 	}
 
@@ -200,6 +201,7 @@ public class RecordServiceImpl implements RecordService, SerialPortEventListener
 		ArrayList<Double> y11 = new ArrayList<Double>();
 		ArrayList<Double> y12 = new ArrayList<Double>();
 		try {
+			Thread.sleep(100);//保证先停止再读取
 			reader = new BufferedReader(new FileReader(file));
 			while ((temp = reader.readLine()) != null && (temp = reader.readLine()).length() >= 85) {
 				System.out.println("line" + line + "的长度:" + temp.length());
@@ -262,7 +264,7 @@ public class RecordServiceImpl implements RecordService, SerialPortEventListener
 		}
 
 		catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("没数据了");
 		} finally {
 			if (reader != null) {
 				try {
