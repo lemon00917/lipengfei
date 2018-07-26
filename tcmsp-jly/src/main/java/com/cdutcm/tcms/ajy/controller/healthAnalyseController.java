@@ -2,7 +2,7 @@ package com.cdutcm.tcms.ajy.controller;
 
 
 
-import static org.mockito.Mockito.ignoreStubs;
+//import static org.mockito.Mockito.ignoreStubs;
 
 import java.util.Date;
 import java.util.List;
@@ -116,5 +116,4 @@ public class healthAnalyseController {
 		}
 		return mv;
 	}
-	
 }

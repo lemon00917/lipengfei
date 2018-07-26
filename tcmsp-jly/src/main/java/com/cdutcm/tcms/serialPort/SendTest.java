@@ -219,7 +219,7 @@ public class SendTest implements SerialPortEventListener {
 				Thread.sleep(20);
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("停止监测");
 		}
 	}
 

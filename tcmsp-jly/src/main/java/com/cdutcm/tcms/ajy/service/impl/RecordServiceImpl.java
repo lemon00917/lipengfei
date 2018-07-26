@@ -446,11 +446,11 @@ public class RecordServiceImpl implements RecordService, SerialPortEventListener
 
 		}
 
-		int n = 1;
-		for (Double jcsj : jc) {
-			System.out.println(n + ":" + jcsj);
-			n++;
-		}
+//		int n = 1;
+//		for (Double jcsj : jc) {
+//			System.out.println(n + ":" + jcsj);
+//			n++;
+//		}
 		return jc;
 
 	}
