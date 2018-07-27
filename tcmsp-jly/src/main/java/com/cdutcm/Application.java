@@ -1,8 +1,5 @@
 package com.cdutcm;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.beetl.core.resource.ClasspathResourceLoader;
 import org.beetl.ext.spring.BeetlGroupUtilConfiguration;
 import org.beetl.ext.spring.BeetlSpringViewResolver;
@@ -12,21 +9,19 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
+import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.ImportResource;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternUtils;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-import com.cdutcm.core.beetl.ShiroExt;
-
 @SpringBootApplication
 @EnableScheduling
 @ComponentScan("com.cdutcm")
-@ImportResource(locations={"classpath:spring-config-cache.xml"})
 public class Application extends SpringBootServletInitializer {
 
 	private final static Logger logger = LoggerFactory
@@ -36,6 +31,15 @@ public class Application extends SpringBootServletInitializer {
 		SpringApplication.run(Application.class, args);
 		logger.info("程序启动");
 	}
+	 @Bean
+	 public EmbeddedServletContainerCustomizer containerCustomizer(){
+	        return new EmbeddedServletContainerCustomizer() {
+	            @Override
+	            public void customize(ConfigurableEmbeddedServletContainer container) {
+	                 container.setSessionTimeout(6000000);//单位为S
+	           }
+	     };
+	 }
 
 	@Override
 	protected SpringApplicationBuilder configure(
@@ -56,9 +60,6 @@ public class Application extends SpringBootServletInitializer {
 
 			beetlGroupUtilConfiguration.setConfigFileResource(patternResolver
 					.getResource("classpath:beetl.properties"));
-			Map<String, Object> functionPackages=new HashMap<String, Object>();
-  			functionPackages.put("so", new ShiroExt());
-  			beetlGroupUtilConfiguration.setFunctionPackages(functionPackages);
 			return beetlGroupUtilConfiguration;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
