@@ -15,6 +15,7 @@
 		<result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
 		<result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
 		</resultMap>
+  	
 		
 		<!-- 添加 -->
 	<insert id="insert" parameterType="com.cdutcm.tcms.ajy.model.Record" >

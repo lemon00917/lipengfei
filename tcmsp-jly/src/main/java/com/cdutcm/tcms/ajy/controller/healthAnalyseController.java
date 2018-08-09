@@ -63,7 +63,7 @@ public class healthAnalyseController {
         return mv;
 	}
 	//家主的健康分析
-	@GetMapping("/healthAnalyseContent")
+	@RequestMapping("/healthAnalyseContent")
 	public ModelAndView healthAnalyseContent(HttpSession session){
 		ModelAndView mv = new ModelAndView("/ajy/healthAnalyseContent.html");
 		User user = (User)session.getAttribute(Const.SESSION_USER);
@@ -72,9 +72,18 @@ public class healthAnalyseController {
 		Long id=family.getId(); //获取familymember主键ID
 		//通过id查询所有记录
 		List<ReportDTO>reportDTOs = reportDTOService.selcetByUserID(id);
+		
+		Report report=new Report();
+		Record record=new Record();
+		record.setFamilyMemberId(id);
+		List<Report> reports=reportService.listPageReports(record);
 		mv.addObject("family",family);
 		mv.addObject("reports",reportDTOs);
 		mv.addObject("length",reportDTOs.size());
+		
+		mv.addObject("reports1",reports);
+		mv.addObject("report",report);
+		mv.addObject("record",record);
         return mv;
 	}
 	
@@ -96,10 +105,18 @@ public class healthAnalyseController {
 		ModelAndView mv = new ModelAndView("/ajy/healthAnalyseContent.html");
 		FamilyMember family=aFamilyMemberService.selectByPrimaryKey(id);  //family是个人信息		
 		//通过id查询所有记录
+		Report report=new Report();
 		List<ReportDTO>reportDTOs = reportDTOService.selcetByUserID(id);
+		Record record=new Record();
+		record.setFamilyMemberId(id);
+		List<Report> reports=reportService.listPageReports(record);
 		mv.addObject("family",family);
 		mv.addObject("reports",reportDTOs);
 		mv.addObject("length",reportDTOs.size());
+		
+		mv.addObject("reports1",reports);
+		mv.addObject("report",report);
+		mv.addObject("record",record);
         return mv;
 	}
 	

@@ -11,6 +11,33 @@
 		<result column="health_score" property="healthScore" jdbcType="VARCHAR" />
 		<result column="record_id" property="recordId" jdbcType="BIGINT" />
 		</resultMap>
+	<resultMap id="ReportAndRecordResultMap" type="com.cdutcm.tcms.ajy.model.Report">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="tzbs" property="tzbs" jdbcType="VARCHAR" />
+		<result column="jltz_id" property="jltzId" jdbcType="BIGINT" />
+		<result column="sjys_id" property="sjysId" jdbcType="BIGINT" />
+		<result column="health_score" property="healthScore" jdbcType="VARCHAR" />
+			<association property="record" column="record_id" javaType="com.cdutcm.tcms.ajy.model.Record">
+			<id column="rid" property="id" jdbcType="BIGINT" />
+			<result column="family_member_id" property="familyMemberId" jdbcType="BIGINT" />
+			<result column="detection_result" property="detectionResult" jdbcType="VARCHAR" />
+			<result column="xl" property="xl" jdbcType="VARCHAR" />
+			<result column="tw" property="tw" jdbcType="VARCHAR" />
+			<result column="tzbfb" property="tzbfb" jdbcType="VARCHAR" />
+			<result column="sleep_time" property="sleepTime" jdbcType="VARCHAR" />
+			<result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+			<result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
+			</association>
+		</resultMap>
+		
+		<select id="listPageReports" resultMap="ReportAndRecordResultMap" parameterType="com.cdutcm.tcms.ajy.model.Report">
+		select a.id,a.tzbs,b.id as rid,b.gmt_create
+		from alone_report a 
+		left join alone_record b on a.record_id=b.id 
+		where b.family_member_id=#{familyMemberId,jdbcType=BIGINT}
+	</select>
+		
+		
 		<!-- 通过记录id查找 -->
 		<select id="selectByPrimaryKey" resultMap="ReportResultMap" parameterType="java.lang.Long" >
 		  select *

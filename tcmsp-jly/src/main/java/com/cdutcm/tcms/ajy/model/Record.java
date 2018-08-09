@@ -2,6 +2,8 @@ package com.cdutcm.tcms.ajy.model;
 
 import java.util.Date;
 
+import com.cdutcm.core.page.Page;
+
 public class Record {
 
 	private Long id;
@@ -21,6 +23,26 @@ public class Record {
 	private Date  gmtCreate;
 	
 	private Date  gmtModified;
+	
+	private Page page;
+	
+	private Report report;
+
+	public Page getPage() {
+		return page;
+	}
+
+	public void setPage(Page page) {
+		this.page = page;
+	}
+
+	public Report getReport() {
+		return report;
+	}
+
+	public void setReport(Report report) {
+		this.report = report;
+	}
 
 	public Long getId() {
 		return id;

@@ -1,5 +1,7 @@
 package com.cdutcm.tcms.ajy.model;
 
+import com.cdutcm.core.page.Page;
+
 public class Report {
 
 	private Long id;
@@ -14,6 +16,25 @@ public class Report {
 	
 	private Long recordId; //检测报告ID
 	
+	private Page page;
+	
+	private Record record;
+
+	public Page getPage() {
+		return page;
+	}
+
+	public void setPage(Page page) {
+		this.page = page;
+	}
+
+	public Record getRecord() {
+		return record;
+	}
+
+	public void setRecord(Record record) {
+		this.record = record;
+	}
 
 	public Long getRecordId() {
 		return recordId;

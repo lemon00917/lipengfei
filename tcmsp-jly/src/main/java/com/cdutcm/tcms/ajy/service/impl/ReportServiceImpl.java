@@ -1,9 +1,12 @@
 package com.cdutcm.tcms.ajy.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cdutcm.tcms.ajy.mapper.ReportMapper;
+import com.cdutcm.tcms.ajy.model.Record;
 import com.cdutcm.tcms.ajy.model.Report;
 import com.cdutcm.tcms.ajy.service.ReportService;
 
@@ -29,6 +32,12 @@ public class ReportServiceImpl implements ReportService{
 	public Report selectByPrimaryKey(Long id) {
 		// TODO Auto-generated method stub
 		return reportMapper.selectByPrimaryKey(id);
+	}
+
+	@Override
+	public List<Report> listPageReports(Record record) {
+		// TODO Auto-generated method stub
+		return reportMapper.listPageReports(record);
 	}
 
 	
