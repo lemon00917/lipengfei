@@ -152,14 +152,15 @@
 	</div>
 	
 	<div  id="d3">
+		@ for(data in datas){
 	<div>
 		<a style="font-weight: bold; font-size: 15px;">经络传感与体质关联分析</a><br>
-		<div style=" text-indent:2em;"><a>根据您的经络传感状态，提示：您目前的体质为 <a class="tz" >平和质 </a>体质。</a></div>
+		<div style=" text-indent:2em;"><a>根据您的经络传感状态，提示：您目前的体质为 <a class="tz" >${data.tzlx} </a>体质。</a></div>
 	</div>
-	@ for(data in datas){
+
 	<div>
 		<p><a class="tz" >${data.tzlx}</a> 体质特征</p>
-		<a >气虚体质是以人体功能不足形成的以疲乏气短、自汗、易感冒为主要特征的一部分人群。</a>
+		<!-- <a >气虚体质是以人体功能不足形成的以疲乏气短、自汗、易感冒为主要特征的一部分人群。</a> -->
 		<ul style="list-style-type:none">
 			<li>【总体特征】${data.tztz}</li>
 			<li>【常见表现】${data.cjbx}</li>
