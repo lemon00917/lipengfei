@@ -11,7 +11,8 @@
 		<result column="cjbx" property="cjbx" jdbcType="VARCHAR" />
 		<result column="fbqx" property="fbqx" jdbcType="VARCHAR" />
 		<result column="jl" property="jl" jdbcType="VARCHAR" />
-		<result column="jlzz" property="jlzz" jdbcType="VARCHAR" />		
+		<result column="jlzz" property="jlzz" jdbcType="VARCHAR" />	
+		<result column="xgjb" property="xgjb" jdbcType="VARCHAR" />		
 		<result column="sj" property="sj" jdbcType="VARCHAR" />
 	</resultMap>
 	

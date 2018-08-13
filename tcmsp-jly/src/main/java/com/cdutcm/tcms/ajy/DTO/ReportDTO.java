@@ -24,6 +24,14 @@ public class ReportDTO  {
 	private String sleepTime; //睡眠时间
 	private Date  gmtCreate;
 	
+	private String xgjb; //相关疾病
+	
+	public String getXgjb() {
+		return xgjb;
+	}
+	public void setXgjb(String xgjb) {
+		this.xgjb = xgjb;
+	}
 	public String getXl() {
 		return xl;
 	}

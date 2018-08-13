@@ -26,10 +26,7 @@
               <div class="top-left-itemC-item" > 年&emsp;龄：${family.age}岁</div>
               <div class="top-left-itemC-item" > 体&emsp;重：${family.weight}KG</div>
               <div class="top-left-itemC-item" > 身&emsp;高：${family.height}cm</div>
-               <div class="top-left-itemC-item" > 病&emsp;史：${family.illnesshistoryDesc}</div>
-            
-             
-             
+               <div class="top-left-itemC-item" > 病&emsp;史：${family.illnesshistoryDesc}</div>        
              </div>
           </div>
        </div>
@@ -40,11 +37,11 @@
             <div class="top-itemA-item">经络报告</div>
              
          </div>
-         <div class="top-right-itemB">
+         <div class="top-right-itemB" style="height:300px;overflow:auto">
           <div class="top-right-itemB-right">
-          <div class="inputScore">${reports[0].healScore}%</div>
+         
            <div class="container">
-		    <div class="wave"></div>
+		    <div class="wave"> <div class="inputScore" style="margin-left:55px">${reports[0].healScore}%</div></div>
 		   </div>
 		   <div id="AnalyseText" >健康分析</div>
           </div>
@@ -65,13 +62,16 @@
                 <div>
               病位：${reports[0].jlzz}
                </div>
+                 <div>
+              相关疾病：${reports[0].xgjb}
+               </div>
              </div>
               <div class="top-right-itemB-left-bottom">
                 <div class="top-right-itemB-left-bottom-item">
-                   <img src="img/body_01.png" height="140">
+                 <!--   <img src="img/body_01.png" height="140"> -->
                 </div>
                 <div class="top-right-itemB-left-bottom-item">
-                 <img src="img/body_02.png" height="140">
+                 <!-- <img src="img/body_02.png" height="140"> -->
                 </div>
               </div>
           </div>
@@ -231,7 +231,7 @@ function getScoreAndTime(){
  position:absolute;
  font-size:35px;
  color:#fff;
- margin:110px 0 0 7.5%;
+ margin:100px 0 0 7.5%;
 z-index:40;
 }
 body{

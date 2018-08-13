@@ -93,6 +93,7 @@ public class ReportDTOServiceImpl implements ReportDTOService {
 						recordDTO.setJlzz(basejltz.getJlzz());
 						recordDTO.setTzbs(report.getTzbs());
 						recordDTO.setTztz(basejltz.getTztz());
+						recordDTO.setXgjb(basejltz.getXgjb());
 						recordDTO.setXl(records.getXl());
 						recordDTO.setTw(records.getTw());
 						recordDTO.setSleepTime(records.getSleepTime());
