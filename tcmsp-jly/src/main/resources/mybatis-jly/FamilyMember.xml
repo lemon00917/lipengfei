@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cdutcm.tcms.ajy.mapper.FamilyMemberMapper">
-	<sql id="FamilyMember_Columns">id,user_id,user_briefid,head_img,relation_id,sex,birthday,nation,height,weight,
+	<sql id="FamilyMember_Columns">id,user_id,user_briefid,head_img,relation_id,sex,birthday,nation,height,weight,phone,
 		profession,id_card,address,is_illnesshistory,illnesshistory_desc,gmt_create,gmt_modified,username,relation_name,age
 	</sql>
 	<resultMap id="FamilyResultMap" type="com.cdutcm.tcms.ajy.model.FamilyMember">
@@ -26,6 +26,7 @@
 		<result column="username" property="username" jdbcType="VARCHAR" />
 		<result column="relation_name" property="relationName" jdbcType="VARCHAR" />
 		<result column="age" property="age" jdbcType="VARCHAR" />
+		<result column="phone" property="phone" jdbcType="VARCHAR" />
 	</resultMap>
 	
 	<!-- 根据ID查询 -->
@@ -62,13 +63,13 @@
   	<!--添加  -->
   	 <insert id="insert" parameterType="com.cdutcm.tcms.ajy.model.FamilyMember" >
   	 insert into alone_family_member(id,user_id,user_briefid,head_img,relation_id,sex,birthday,nation,height,weight,
-		profession,id_card,address,is_illnesshistory,illnesshistory_desc,gmt_create,gmt_modified,username,relation_name,age)
+		profession,id_card,address,is_illnesshistory,illnesshistory_desc,gmt_create,gmt_modified,username,relation_name,age,phone)
 	values(#{id,jdbcType=BIGINT},#{userId,jdbcType=BIGINT},#{userBriefid,jdbcType=VARCHAR},#{headImg,jdbcType=VARCHAR},
 	#{relationId,jdbcType=INTEGER},#{sex,jdbcType=VARCHAR},#{birthday,jdbcType=TIMESTAMP},#{nation,jdbcType=VARCHAR},
 	#{height,jdbcType=DOUBLE},#{weight,jdbcType=DOUBLE},#{profession,jdbcType=VARCHAR},#{idCard,jdbcType=VARCHAR},
 	#{address,jdbcType=VARCHAR},#{isIllnesshistory,jdbcType=TINYINT},#{illnesshistoryDesc,jdbcType=VARCHAR},
 	#{gmtCreate,jdbcType=TIMESTAMP},#{gmtModified,jdbcType=TIMESTAMP},#{username,jdbcType=VARCHAR},
-	#{relationName,jdbcType=VARCHAR},#{age,jdbcType=VARCHAR})
+	#{relationName,jdbcType=VARCHAR},#{age,jdbcType=VARCHAR},#{phone,jdbcType=VARCHAR})
   	 </insert>
   	 
   	 <!--修改  -->
@@ -93,7 +94,8 @@
   	 	    gmt_modified=#{gmtModified,jdbcType=TIMESTAMP},
   	 	    username=#{username,jdbcType=VARCHAR},
   	 	    relation_name=#{relationName,jdbcType=VARCHAR},
-  	 	    age=#{age,jdbcType=VARCHAR}
+  	 	    age=#{age,jdbcType=VARCHAR},
+  	 	     phone=#{phone,jdbcType=VARCHAR}
   	  where id = #{id,jdbcType=BIGINT}
   	 </update>
   	 

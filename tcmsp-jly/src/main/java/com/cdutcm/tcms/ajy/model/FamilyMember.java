@@ -57,6 +57,24 @@ public class FamilyMember {
 	 
 	private String age;
 	
+	private String  phone ;
+	
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public static FamilyMember getFamilyMember() {
+		return familyMember;
+	}
+
+	public static void setFamilyMember(FamilyMember familyMember) {
+		FamilyMember.familyMember = familyMember;
+	}
+
 	public String getAge() {
 		return age;
 	}

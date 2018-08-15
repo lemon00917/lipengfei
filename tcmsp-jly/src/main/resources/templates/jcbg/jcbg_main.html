@@ -58,29 +58,103 @@
                                 <input type="text" class="form-control" name="sleepTime" id="sleepTime" />
                             </div>
                             <div style="text-align:center;margin-bottom:10px">
-                            <button type="button" class="btn btn-success" onclick="jcstart()" > 开始检测</button>
-                            <button type="button" class="btn btn-danger" onclick="jcstop()"> 停止检测</button>
+                           <!--  <button type="button" class="btn btn-success" onclick="jcstart()" > 开始检测</button>
+                            <button type="button" class="btn btn-danger" onclick="jcstop()"> 停止检测</button> -->
                             </div>
 				 <div style="text-align:center">
+				  <button type="button" class="btn btn-success" onclick="jc()" > 开始检测</button>
 				   <button type="submit" class="btn btn-primary">提交报告</button> 
 				 </div>
 			</form>
 		</div>
 	</div>
 </div>
+
+<div id="bg"></div>
+<div id="show">
+
+    <img src="${request.contextPath}/img/loadImg/21.jpg" id="testImage" style="width: 400px;">
+<button onclick="hideDiv()">取消</button>
+</div>
 </main>
+<style>
+
+#bg{ 
+	display: none; 
+	position: absolute; 
+	top: 0%; 
+	left: 0%; 
+	width: 100%; 
+	height: 100%; 
+	background-color: black; 
+	z-index:1001; 
+	-moz-opacity: 0.3; 
+	opacity:.30; 
+	filter: alpha(opacity=30);
+}
+ 
+#show{ 
+	display: none; 
+	position: absolute; 
+	top: 25%; 
+	left: 32%; 
+	width: 33%; 
+	height: auto; 
+	padding: 8px;
+	border: 8px solid #E8E9F7; 
+	background-color: white; 
+	z-index:1002; 
+	overflow: auto;
+}
+
+</style>
 <!-- Essential javascripts for application to work-->
 <script src="${request.contextPath}/js/jquery-3.2.1.min.js"></script>
 <script src="${request.contextPath}/js/popper.min.js"></script>
 <script src="${request.contextPath}/bootstrap/js/bootstrap.js"></script>
 <script src="${request.contextPath}/js/main.js"></script>
-
+<script src="${request.contextPath}/js/dayin.js"></script>
 <script src="${request.contextPath}/js/plugins/pace.min.js"></script>
 <script src="${request.contextPath}/js/jquery.validate.min.js"></script>
 <script src="${request.contextPath}/js/message_zh.js"></script>
 <script type="text/javascript">
 var contextPath = '${request.contextPath}';
 var postUrl = "${request.contextPath}/record/addRecord";
+var currentImage = 20;   //从1开始
+var imageCount = 29;
+
+function jc() { 
+	/* document.getElementById("bg").style.display ="block";
+	document.getElementById("show").style.display ="block";
+	selfChangeImage(); */
+	
+}
+ function selfChangeImage() {
+   if (currentImage < imageCount){
+        currentImage ++ ;
+    } else if (currentImage = imageCount){
+        currentImage = 21;
+    }
+ 
+    var imageObj = document.getElementById("testImage");
+    imageObj.src ="${request.contextPath}/img/loadImg/"+ currentImage +".png";;
+ 
+    //2秒后执行
+    setTimeout(selfChangeImage, 2000);
+ }
+ 
+function handChangeImage() {
+    var imageObj = document.getElementById("testImage");
+    imageObj.src = "${request.contextPath}/img/loadImg/"+ currentImage +".png";
+ }
+ 
+ 
+function hideDiv(){
+	document.getElementById("bg").style.display ="none";
+	document.getElementById("show").style.display ="none";	
+}
+
+
 function jcstart(){
 	var id=$("#name").val();
 	  $.ajax({
