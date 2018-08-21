@@ -69,13 +69,10 @@
          </div>
          <div class="bottom">
          <div class="bottom-item" id="center">
-            <button type="button" class="btn btn-default btn-primary"onclick="watchReport('${data.id}')">查看报告</button>
+            <button type="button" style="margin-right:8px;"class="btn btn-default btn-primary"onclick="watchReport('${data.id}')">查看报告</button>
+             <button type="button" style="margin-right:8px;" class="btn btn-default btn-primary"onclick="watchFamily('${data.id}')">查看信息</button>
+          <button type="button" class="btn btn-default btn-warning"onclick="editFamily('${data.id}')" >修改资料</button>
           </div>
-          <div class="bottom-item" id="center">
-            <button type="button" class="btn btn-default btn-primary"onclick="watchFamily('${data.id}')">查看信息</button>
-          </div>
-          <div class="bottom-item" id="center"><button type="button" class="btn btn-default btn-warning"onclick="editFamily('${data.id}')" >修改资料</button></div>
-         </div>
        </div>
      </div>
      @}
