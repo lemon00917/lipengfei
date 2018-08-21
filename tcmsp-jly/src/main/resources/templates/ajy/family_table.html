@@ -119,7 +119,7 @@ function watchReport(id){
 		var url="${request.contextPath}/healthinfo";
 		 postdata = {id : id};
 		 $.post(url, postdata, function(data){
-		 console.log(data)
+	
 		 	if(data.status == "TS"){     
 				    
       			 $("#app-content").load("${request.contextPath}/familyHealth?id="+id);          
