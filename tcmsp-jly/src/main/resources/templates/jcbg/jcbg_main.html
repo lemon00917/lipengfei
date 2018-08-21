@@ -73,8 +73,10 @@
 <div id="bg"></div>
 <div id="show">
 
-    <img src="${request.contextPath}/img/loadImg/21.jpg" id="testImage" style="width: 400px;">
-<button onclick="hideDiv()">取消</button>
+	<div class="circleChart" id="circle1"></div> 
+	 <div style="text-align:center;margin-top:10px">
+	<button onclick="hideDiv()" class="btn btn-primary">取消检测</button>
+	</div>
 </div>
 </main>
 <style>
@@ -117,36 +119,30 @@
 <script src="${request.contextPath}/js/plugins/pace.min.js"></script>
 <script src="${request.contextPath}/js/jquery.validate.min.js"></script>
 <script src="${request.contextPath}/js/message_zh.js"></script>
+<script src="${request.contextPath}/js/circleChart.min.js"></script>
 <script type="text/javascript">
 var contextPath = '${request.contextPath}';
 var postUrl = "${request.contextPath}/record/addRecord";
-var currentImage = 20;   //从1开始
-var imageCount = 29;
 
 function jc() { 
-	/* document.getElementById("bg").style.display ="block";
-	document.getElementById("show").style.display ="block";
-	selfChangeImage(); */
-	
+		 document.getElementById("bg").style.display ="block";
+		document.getElementById("show").style.display ="block";
+		$(".circleChart").circleChart({
+            size: 300,
+            value: 0.01,
+            text: 0,
+            onDraw: function(el, circle) {
+                circle.text(Math.round(circle.value) + "%"); // 根据value修改text
+            }
+        });
+        setTimeout(function() {
+            $(".circleChart").circleChart({
+                value:  100
+            });
+        }, 1000);
+         // 定时修改进度条value
+       
 }
- function selfChangeImage() {
-   if (currentImage < imageCount){
-        currentImage ++ ;
-    } else if (currentImage = imageCount){
-        currentImage = 21;
-    }
- 
-    var imageObj = document.getElementById("testImage");
-    imageObj.src ="${request.contextPath}/img/loadImg/"+ currentImage +".png";;
- 
-    //2秒后执行
-    setTimeout(selfChangeImage, 2000);
- }
- 
-function handChangeImage() {
-    var imageObj = document.getElementById("testImage");
-    imageObj.src = "${request.contextPath}/img/loadImg/"+ currentImage +".png";
- }
  
  
 function hideDiv(){

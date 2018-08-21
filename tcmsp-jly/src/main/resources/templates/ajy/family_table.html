@@ -17,7 +17,10 @@
          <div class="top">
           <div class="itemA" style="display:flex;justify-content: space-between;">
              <div class="itemA-item">ID:${data.userBriefid}</div>
-             <div class="itemA-item" onclick="deleteFamily('${data.id}')"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></div>
+             <div class="itemA-item" >
+             <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"
+               onclick="delModel('${data.username}','${data.id}')"></span>
+             </div>
           </div>
            <div class="itemB" id="center">
               <img src="${data.headImg}" height="140" width="140" style="border-radius:70px">
@@ -78,12 +81,38 @@
      @}
    </div>
  </div>
+ 
+ <!-- 删除的模态框 -->
+<div class="modal inmodal" id="myModal2" tabindex="-1" role="dialog"  aria-hidden="true">
+  	<div class="modal-dialog">
+                <div class="modal-content animated fadeIn">
+ 	<div class="modal-header">
+ 	  <p class="modal-title">删除</p>
+ 	</div>
+ 	<div class="modal-body"  >
+                    <h3 id="delname"><h3>
+                       <input hidden="true" id="delid">
+     </div>
+     <div class="modal-footer">
+   
+                        <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary" onclick="del()">确认</button>
+                    </div>
+              </div>
+        </div>
+ </div>
+ 
 </body>
 <script>
 function editFamily(id){
    $("#app-content").load("/jly/aFamilyMember/editFamily?id="+id);
 }
-
+ // 删除model
+	function delModel(data, id) {
+	 $("#myModal2").show(); 
+		$("#delid").attr("value", id);
+		$("#delname").text("你确认删除（" + data + "）相关信息？");
+	}
 
 function watchReport(id){  
 	
@@ -107,19 +136,19 @@ function watchFamily(id){
 $("#addFamily").click(function(){
 $('#app-content').load("${request.contextPath}/aFamilyMember/insertfamily")
 })
-function deleteFamily(t){
-        confirm("确定删除关联家人？")
-
+function del(){  
+		 var id = $("#delid").val();
         var relationId=$("#relationId").val();
           $.ajax({
                type: "POST",
                url: "${request.contextPath}/aFamilyMember/delFamily",
-               data: {familyId:t},
+               data: {familyId:id},
                async:false,
                success: function(data) {
                  if(data.status == "TS"){
                  alert("删除成功！")     
-      			  $('#app-content').load(contextPath+"/aFamilyMember/familyTable?rid="+relationId);          
+      			  $('#app-content').load(contextPath+"/aFamilyMember/familyTable?rid="+relationId);  
+      			  $("#myModal2").hide();        
                  }else{
                     alert("删除失败！")
                  }
