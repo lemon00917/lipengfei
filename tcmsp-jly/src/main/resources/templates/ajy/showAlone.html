@@ -93,7 +93,7 @@
 				   </div>
 				</div>
 			</div>
-			<div class="col-md-4 column" style="margin-top:20px">
+			<div class="col-md-6 column" style="margin-top:20px">
 			   <div class="form-group">
 			        <div class="col-xs-8">
 						 <label for="exampleInputEmail1">电话号码</label>
@@ -105,7 +105,7 @@
 		
 		<!-- 第五行 -->
 		<div class="row clearfix">
-			<div class="col-md-4 column" style="margin-top:20px">
+			<div class="col-md-6 column" style="margin-top:20px">
 			   <div class="form-group">
 			        <div class="col-xs-8">
 						 <label for="exampleInputEmail1">身份证号</label>
@@ -113,7 +113,7 @@
 				   </div>
 				</div>
 			</div>
-			<div class="col-md-4 column" style="margin-top:20px">
+			<div class="col-md-6 column" style="margin-top:20px">
 			   <div class="form-group">
 			        <div class="col-xs-8">
 						 <label for="exampleInputEmail1" >家庭住址</label>
@@ -146,8 +146,8 @@
 			   <div class="form-group">
 			     <div class="col-xs-8">
 						 <label for="exampleInputEmail1">病史说明</label>
-						 <textarea type="text" class="form-control" readonly="readonly" name="illnesshistoryDesc"  rows="3" 
-						 value='${data.illnesshistoryDesc}'>${data.illnesshistoryDesc}
+						 <textarea type="text" class="form-control" readonly="readonly" name="illnesshistoryDesc"  
+						 style="width:600px"rows="8"  value='${data.illnesshistoryDesc}'>${data.illnesshistoryDesc}
 					</textarea>
 				   </div>
 				</div>
@@ -177,6 +177,12 @@ var isIllnesshistory=$("#illhistory").val();
   </script>
 </body>
 <style>
+.form-control{
+	
+	  border-radius: 20px;   
+ 	 margin:20px auto;
+ 	 border:1px solid 	#009FCC;
+}
 #upImg{
   z-index:20px;
   display:absolute;
