@@ -7,24 +7,30 @@
 <body>
 <div class="info">
    <div class="title">
-        <h2>档案信息</h2>
+        <h1>档案信息</h1>
    </div>
    <div class="content">
       <div class="content-itemA">
         <div class="content-item-blank">
             <div class="content-title">个人档案信息</div>
-             <div class="content-content">
-                 <div id="itemA" onclick="watchFamily()">查看</div>
-                 <div id="itemA" onclick="editFamily()">修改</div>
+             <div class="content-content" style="margin-left:20px;float:left;font-size: 30px; " >           
+                 <div id="itemA"   onclick="watchFamily()">查看</div>
+                 <div id="itemA"   onclick="editFamily()">修改</div>   
+                   </div>    
              </div>
+             
+             <div>
+            
         </div>
       </div>
       <div class="content-itemB">
-      <div class="content-item-blank">
+      <div class="content-item-blank3">
       <div class="content-title">家人档案信息</div>
-             <div class="content-content">
-                 <div id="itemA" onclick="familyTable()">查看</div>
-                 <div id="itemA" onclick="addFamlily()">添加</div>
+             <div class="content-content" style="margin-left:20px;font-size: 30px;float:left">
+                 <div id="itemA"  onclick="familyTable()">查看</div>
+                 <div id="itemA"   onclick="addFamlily()">添加</div>
+               
+                   </div>
                  <input hidden type="text" value="${fuser.userId}" name="userId">
                  <input hidden type="text" value="${fuser.username}" name="userName">
                  <input hidden type="text" value="${fuser.headImg}" name="headImg">
@@ -64,8 +70,8 @@ function watchFamily(){
 <style>
 .content-title{
   height:30%;
-  padding-top:25%;
-  font-size:20px;
+  padding-top:10%;
+  font-size:25px;
   font-weight:900;
 }
 .content-content{
@@ -111,7 +117,13 @@ function watchFamily(){
    text-align:center;
 }
 .content-item-blank{
-  background-image:url(img/famliyTable_bg.png);
+  background-image:url(img/aloneinfo.png);
+  background-position:center;
+  height:100%;
+  width:100%;
+}
+.content-item-blank3{
+  background-image:url(img/familyinfo.png);
   background-position:center;
   height:100%;
   width:100%;

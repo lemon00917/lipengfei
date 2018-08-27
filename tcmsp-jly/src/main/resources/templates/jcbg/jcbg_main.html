@@ -62,7 +62,7 @@
                             <button type="button" class="btn btn-danger" onclick="jcstop()"> 停止检测</button> -->
                             </div>
 				 <div style="text-align:center">
-				  <button type="button" class="btn btn-success" onclick="jc()" > 开始检测</button>
+				  <button type="button" class="btn btn-success" onclick="jcstart()" > 开始检测</button>
 				   <button type="submit" class="btn btn-primary">提交报告</button> 
 				 </div>
 			</form>
@@ -75,7 +75,7 @@
 	<h3 id="jctips">检测中...</h3>
 	<!-- <div class="circleChart" id="circle1"></div>  -->
 	 <div style="text-align:center;margin-top:10px">
-	<button onclick="hideDiv()" class="btn btn-primary">取消检测</button>
+	<button onclick="canceljc()" class="btn btn-primary">取消检测</button>
 	</div>
 </div>
 </main>
@@ -124,14 +124,16 @@
 var contextPath = '${request.contextPath}';
 var postUrl = "${request.contextPath}/record/addRecord";
 
-function jc() { 
+/* function jc() { 
 		document.getElementById("bg").style.display ="block";
 		document.getElementById("show").style.display ="block";
+		jcstart();
 		setTimeout("t1()",6000);			       
-}
+} */
  	function t1(){
  		$("#jctips").text("检测完成！");
  		setTimeout("hideDiv()",1000);
+ 		jcstop();
  	}
  
  
@@ -140,16 +142,30 @@ function hideDiv(){
 	document.getElementById("show").style.display ="none";	
 	setTimeout("t1()",1000);
 }
-
+function canceljc(){
+	document.getElementById("bg").style.display ="none";
+	document.getElementById("show").style.display ="none";	
+	var id=$("#name").val();
+	  $.ajax({
+	  type: "POST",
+      url: "${request.contextPath}/record/jcStop",
+      data:id,
+        success: function(data) {
+     		
+        }
+        });
+}
 
 function jcstart(){
+	document.getElementById("bg").style.display ="block";
+	document.getElementById("show").style.display ="block";
 	var id=$("#name").val();
 	  $.ajax({
 	  type: "POST",
       url: "${request.contextPath}/record/jcStart",
       data:id,
         success: function(data) {
-        
+         	setTimeout("t1()",6000);
         }
         });
 }
