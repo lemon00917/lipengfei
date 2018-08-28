@@ -23,7 +23,7 @@
         		    @}
 
 中间部分主要内容 -->
-<main class="app-content" id="app-content">
+<main class="app-content" id="app-content" style="font-size:18px">
    <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-6 col-md-offset-3 column">
@@ -62,7 +62,7 @@
                             <button type="button" class="btn btn-danger" onclick="jcstop()"> 停止检测</button> -->
                             </div>
 				 <div style="text-align:center">
-				  <button type="button" class="btn btn-success" onclick="jcstart()" > 开始检测</button>
+				  <button type="button" class="btn btn-success" onclick="jcstart()" style="font-size:15px"> 开始检测</button>
 				   <button type="submit" class="btn btn-primary">提交报告</button> 
 				 </div>
 			</form>
@@ -233,7 +233,11 @@ $(function(){
 </body>
 <style>
 .app-content{
+  /*  background-image:url(../img/famliyTable_bg.png); */
   min-height:799px;
+ /*  background-position:center;
+  height:100%;
+  width:100%; */
 }
 .error{
 	color:#E3170D;

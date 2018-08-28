@@ -14,6 +14,10 @@
 		<result column="jlzz" property="jlzz" jdbcType="VARCHAR" />	
 		<result column="xgjb" property="xgjb" jdbcType="VARCHAR" />		
 		<result column="sj" property="sj" jdbcType="VARCHAR" />
+		<result column="sw" property="sw" jdbcType="VARCHAR" />
+		<result column="syly" property="syly" jdbcType="VARCHAR" />
+		<result column="tnzlczpd" property="tnzlczpd" jdbcType="VARCHAR" />
+		<result column="tnzlcznr" property="tnzlcznr" jdbcType="VARCHAR" />
 	</resultMap>
 	
 	<select id="selectBytz" resultMap="JltzResultMap" parameterType="com.cdutcm.tcms.ajy.model.BaseJltz" >

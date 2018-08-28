@@ -26,6 +26,38 @@ public class ReportDTO  {
 	
 	private String xgjb; //相关疾病
 	
+	private String tnzlcznr;//推拿操作内容
+	
+	private String tnzlczpd;//推拿操作频率
+	
+	private String sw;//食物
+	
+	private String syly;//食药两用
+	
+	public String getTnzlcznr() {
+		return tnzlcznr;
+	}
+	public void setTnzlcznr(String tnzlcznr) {
+		this.tnzlcznr = tnzlcznr;
+	}
+	public String getTnzlczpd() {
+		return tnzlczpd;
+	}
+	public void setTnzlczpd(String tnzlczpd) {
+		this.tnzlczpd = tnzlczpd;
+	}
+	public String getSw() {
+		return sw;
+	}
+	public void setSw(String sw) {
+		this.sw = sw;
+	}
+	public String getSyly() {
+		return syly;
+	}
+	public void setSyly(String syly) {
+		this.syly = syly;
+	}
 	public String getXgjb() {
 		return xgjb;
 	}

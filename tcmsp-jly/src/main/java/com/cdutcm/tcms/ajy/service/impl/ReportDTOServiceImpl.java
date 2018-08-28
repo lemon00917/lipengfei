@@ -93,7 +93,11 @@ public class ReportDTOServiceImpl implements ReportDTOService {
 						recordDTO.setJlzz(basejltz.getJlzz());
 						recordDTO.setTzbs(report.getTzbs());
 						recordDTO.setTztz(basejltz.getTztz());
-						recordDTO.setXgjb(basejltz.getXgjb());
+						recordDTO.setXgjb(basejltz.getXgjb());//相关疾病
+						recordDTO.setSw(basejltz.getSw());//食物
+						recordDTO.setSyly(basejltz.getSyly());//食药两用
+						recordDTO.setTnzlcznr(basejltz.getTnzlcznr());//推拿内容
+						recordDTO.setTnzlczpd(basejltz.getTnzlczpd());//推拿频度
 						recordDTO.setXl(records.getXl());
 						recordDTO.setTw(records.getTw());
 						recordDTO.setSleepTime(records.getSleepTime());
