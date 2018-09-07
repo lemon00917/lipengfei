@@ -70,9 +70,9 @@ public class Com4Write {
             int availableBytes = 0;
             int len=0;
             //无限循环，每隔20毫秒对串口COM21进行一次扫描，检查是否有数据到达
-            while(true){
+             while(true){
                 //获取串口COM21收到的可用字节数
-                availableBytes = inputStream.available();
+                 availableBytes = inputStream.available();
                 //如果可用字节数大于零则开始循环并获取数据
              
                     //从串口的输入流对象中读入数据并将数据存放到缓存数组中
@@ -87,7 +87,7 @@ public class Com4Write {
                       
                       	}
                     
-                    for(int j = 0;j < cache.length && j < availableBytes; j++){
+                     for(int j = 0;j < cache.length && j < availableBytes; j++){
                          //因为COM11口发送的是使用byte数组表示的字符串，
                         //所以在此将接收到的每个字节的数据都强制装换为char对象即可，
                         //这是一个简单的编码转换，读者可以根据需要进行更加复杂的编码转换。

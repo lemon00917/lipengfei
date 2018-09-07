@@ -85,7 +85,7 @@ public class SendTest implements SerialPortEventListener {
 		}
 		System.out.println(osName);
 		try {
-			portid = CommPortIdentifier.getPortIdentifier(osName);
+			portid = CommPortIdentifier.getPortIdentifier("COM6");
 			// portid = CommPortIdentifier.getPortIdentifier(Port);
 			if (portid.isCurrentlyOwned()) {
 				System.out.println("端口在使用");
@@ -186,30 +186,40 @@ public class SendTest implements SerialPortEventListener {
 			while (inputStream.available() >= 0) {
 				String str = "" + inputStream.read();
 				strList.add(str);
-				// System.out.println(str);
-				String list0 = strList.get(0);
-				if (!"113".equals(list0) && !"114".equals(list0)) {
+				System.out.println(str);
+ 				String list0 = strList.get(0);
+ 				if (!"113".equals(list0) && !"114".equals(list0)) {
 					strList = new ArrayList<String>();
 				}
 				if (strList.size() == 12 && strList.get(11).equals("255")) { // 12个是一条
 					String sj = "";
 					List<String> list = strList.subList(2, 9);
 					for (String string : list) {
-						string = "0" + string;
+					
 						sj += string;
+					
 					}
 					if (sj.indexOf("-") == -1) {
-						Double valueOf = Double.valueOf(sj);
-						valueOf = valueOf / 1000;
-						//doubles.add(valueOf);
+//						Double valueOf = Double.valueOf(sj);
+//						valueOf = valueOf / 1000;
+//						doubles.add(valueOf);
+//						a = a / 1000;
+//						System.out.println(valueOf);
 						int a = Integer.parseInt(sj);
-
-						a = a / 1000;
+						System.out.println("a:"+a);					
 						Double b=5*41.2*a;
+						System.out.println("b:"+b);
 						Double c=(double) (4*4096-5*a);
-						a=(int) (b/c);
-						
-						doubles.add((double) a);
+						System.out.println("c:"+c);
+						Double d= (b/c);						
+					
+						if(d>=20&&d<=910){
+							System.out.println("规范的d:"+d);
+							doubles.add( d);
+						}else{
+							System.out.println("不规范的值："+d);
+						}
+						strList = new ArrayList<String>();
 					}
 					strList = new ArrayList<String>();
 				}

@@ -136,7 +136,7 @@ public class RecordServiceImpl implements RecordService, SerialPortEventListener
 						Double b=5*41.2*a;
 						Double c=(double) (4*4096-5*a);
 						a=(int) (b/c);
-						
+						System.out.println(a);
 						doubles.add(a);
 						strList = new ArrayList<String>();
 					}
@@ -781,16 +781,25 @@ public class RecordServiceImpl implements RecordService, SerialPortEventListener
 						String sj = "";
 						List<String> list = strList.subList(2, 9);
 						for (String string : list) {
-							int i = string.length();
-							if (i == 1) {
-								string = "0" + string;
-							}
+							
 							sj += string;
 						}
-						Double valueOf = Double.valueOf(sj);
+						int a = Integer.parseInt(sj);
+						System.out.println("a:"+a);					
+						Double b=5*41.2*a;
+						System.out.println("b:"+b);
+						Double c=(double) (4*4096-5*a);
+						System.out.println("c:"+c);
+						Double d= (b/c);						
+						System.out.println("d:"+d);
+						
+						doubles.add( d);
+						strList = new ArrayList<String>();
+						
+						/*Double valueOf = Double.valueOf(sj);
 						valueOf = valueOf / 1000;
 						doubles.add(valueOf);
-						strList = new ArrayList<String>();
+						strList = new ArrayList<String>();*/
 					}
 					if (doubles.size() == 24) { // 24个是一组
 						System.out.println(doubles);
