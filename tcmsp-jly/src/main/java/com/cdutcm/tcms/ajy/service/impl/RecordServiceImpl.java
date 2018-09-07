@@ -123,9 +123,7 @@ public class RecordServiceImpl implements RecordService, SerialPortEventListener
 					if (strList.size() == 12) { // 12个是一条
 						String sj = "";
 						List<String> list = strList.subList(2, 9);
-						for (String string : list) {
-							
-							
+						for (String string : list) {							
 							sj += string;
 						}
 						int a = Integer.parseInt(sj);
