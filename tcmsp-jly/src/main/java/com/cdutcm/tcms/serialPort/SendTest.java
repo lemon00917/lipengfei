@@ -201,7 +201,15 @@ public class SendTest implements SerialPortEventListener {
 					if (sj.indexOf("-") == -1) {
 						Double valueOf = Double.valueOf(sj);
 						valueOf = valueOf / 1000;
-						doubles.add(valueOf);
+						//doubles.add(valueOf);
+						int a = Integer.parseInt(sj);
+
+						a = a / 1000;
+						Double b=5*41.2*a;
+						Double c=(double) (4*4096-5*a);
+						a=(int) (b/c);
+						
+						doubles.add((double) a);
 					}
 					strList = new ArrayList<String>();
 				}

@@ -133,6 +133,10 @@ public class RecordServiceImpl implements RecordService, SerialPortEventListener
 						int a = Integer.parseInt(sj);
 
 						a = a / 1000;
+						Double b=5*41.2*a;
+						Double c=(double) (4*4096-5*a);
+						a=(int) (b/c);
+						
 						doubles.add(a);
 						strList = new ArrayList<String>();
 					}
