@@ -124,20 +124,24 @@ public class RecordServiceImpl implements RecordService, SerialPortEventListener
 						String sj = "";
 						List<String> list = strList.subList(2, 9);
 						for (String string : list) {
-							int i = string.length();
-							if (i == 1) {
-								string = "0" + string;
-							}
+							
+							
 							sj += string;
 						}
 						int a = Integer.parseInt(sj);
-
-						a = a / 1000;
+						System.out.println("a:"+a);					
 						Double b=5*41.2*a;
+						System.out.println("b:"+b);
 						Double c=(double) (4*4096-5*a);
-						a=(int) (b/c);
-						System.out.println(a);
-						doubles.add(a);
+						System.out.println("c:"+c);
+						Integer d= (int) (b/c);						
+					
+						if(d>=20&&d<=910){
+							System.out.println("规范的d:"+d);
+							doubles.add( d);
+						}else{
+							System.out.println("不规范的值："+d);
+						}
 						strList = new ArrayList<String>();
 					}
 					if (doubles.size() == 24) { // 24个是一组

@@ -73,7 +73,6 @@
 <div id="bg"></div>
 <div id="show">
 	<h3 id="jctips">检测中...</h3>
-	<!-- <div class="circleChart" id="circle1"></div>  -->
 	 <div style="text-align:center;margin-top:10px">
 	<button onclick="canceljc()" class="btn btn-primary">取消检测</button>
 	</div>
@@ -159,13 +158,13 @@ function canceljc(){
 function jcstart(){
 	document.getElementById("bg").style.display ="block";
 	document.getElementById("show").style.display ="block";
+	setTimeout("t1()",60000);
 	var id=$("#name").val();
 	  $.ajax({
 	  type: "POST",
       url: "${request.contextPath}/record/jcStart",
       data:id,
-        success: function(data) {
-         	setTimeout("t1()",6000);
+        success: function(data) {        
         }
         });
 }
