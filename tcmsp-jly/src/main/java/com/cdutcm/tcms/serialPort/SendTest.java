@@ -85,7 +85,7 @@ public class SendTest implements SerialPortEventListener {
 		}
 		System.out.println(osName);
 		try {
-			portid = CommPortIdentifier.getPortIdentifier("COM6");
+			portid = CommPortIdentifier.getPortIdentifier(osName);
 			// portid = CommPortIdentifier.getPortIdentifier(Port);
 			if (portid.isCurrentlyOwned()) {
 				System.out.println("端口在使用");
