@@ -27,7 +27,7 @@
 	select * from sys_menu where (parent_id !='' or parent_id  is not null) and menu_type='button'
 	</select>
 	
-	<select id="selectmenubyid" parameterType="long" resultType="com.cdutcm.tcms.sys.entity.Menu">
+	<select id="selectmenubyid" parameterType="java.lang.Long" resultType="com.cdutcm.tcms.sys.entity.Menu">
 	select * from sys_menu where menu_id=#{menuid}
 	</select>
 	
